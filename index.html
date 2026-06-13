@@ -4707,44 +4707,82 @@
     };
 
     // CLIENT WRAPPER FOR GOOGLE APPS SCRIPT
-    function runScript(fnName, args, onSuccess, onError) {
-      // Mock for offline styling trials, or use native GAS execution
-      if (typeof google === 'undefined' || !google.script || !google.script.run) {
-        console.warn(`Local Environment: Simulating script execution for ${fnName}`);
-        
-        // Define offline mock database for high-fidelity styling previews
-        const mockDb = {
-          spareParts: [
-            { id: '1', date: getLocalDateString(), invoice: 'INV-001234', part: 'Brake Pads', qty: 2, price: 1500, total: 3000, payment: 'Cash', customer: 'David Kamau', created_at: new Date(Date.now() - 3600000).toISOString() },
-            { id: '2', date: getLocalDateString(), invoice: 'INV-001235', part: 'Oil Filter', qty: 1, price: 800, total: 800, payment: 'M-Pesa', customer: 'Sarah Wambui', created_at: new Date(Date.now() - 1800000).toISOString() },
-            { id: '3', date: getLocalDateString(), invoice: 'INV-001236', part: 'Spark Plug', qty: 4, price: 450, total: 1800, payment: 'Credit', customer: 'John Mwangi', created_at: new Date().toISOString() }
-          ],
-          repairs: [
-            { id: 'r1', date: getLocalDateString(), job: 'JOB-987654', customer: 'James Omondi', phone: '0712345678', model: 'Honda CB125', description: 'Engine service & chain adjustment', mechanic: 'Peter mechanic', parts: 'Oil, Spark Plug', fee: 2500, payment: 'Cash', status: 'In Progress', created_at: new Date(Date.now() - 7200000).toISOString() },
-            { id: 'r2', date: getLocalDateString(), job: 'JOB-987655', customer: 'Mary Atieno', phone: '0723456789', model: 'Yamaha Crux', description: 'Front brake cable replacement', mechanic: 'John mechanic', parts: 'Brake Cable', fee: 1200, payment: 'M-Pesa', status: 'Completed', created_at: new Date(Date.now() - 3600000).toISOString() }
-          ],
-          orgJobs: [
-            { id: 'o1', date: getLocalDateString(), org_name: 'FHI', bikes: 5, reg: 'KBH 123A', model: 'Suzuki TF125', invoice: 'INV-ORG-554', parts: 'Tires, tubes', parts_cost: 12000, mechanic: 'Peter mechanic', labour: 5000, mech_pay_date: '', status: 'Unpaid', due: getLocalDateString(new Date(Date.now() + 30*24*60*60*1000)), created_at: new Date(Date.now() - 14400000).toISOString() },
-            { id: 'o2', date: getLocalDateString(), org_name: 'FCA', bikes: 2, reg: 'KDM 456B', model: 'Honda XL125', invoice: 'INV-ORG-555', parts: 'Clutch plate', parts_cost: 4500, mechanic: 'John mechanic', labour: 2000, mech_pay_date: getLocalDateString(), status: 'Paid', due: getLocalDateString(), created_at: new Date(Date.now() - 10800000).toISOString() }
-          ],
-          debts: [
-            { id: 'd1', date: getLocalDateString(), ref: 'INV-001236', name: 'John Mwangi', phone: '0711223344', item: 'Spark Plug x4', amount: 1800, paid: 800, due: getLocalDateString(new Date(Date.now() + 15*24*60*60*1000)), created_at: new Date().toISOString() },
-            { id: 'd2', date: getLocalDateString(), ref: 'INV-ORG-554', name: 'FHI NGO', phone: '0722334455', item: 'Fleet Maintenance', amount: 17000, paid: 0, due: getLocalDateString(new Date(Date.now() - 5*24*60*60*1000)), created_at: new Date(Date.now() - 14400000).toISOString() }
-          ],
-          expenses: [
-            { id: 'e1', date: getLocalDateString(), category: 'Rent', description: 'Garage workshop monthly rent', paid_to: 'Landlord', amount: 35000, payment: 'Bank Transfer', created_at: new Date(Date.now() - 86400000).toISOString() },
-            { id: 'e2', date: getLocalDateString(), category: 'Electricity', description: 'Token purchases', paid_to: 'Kenya Power', amount: 2500, payment: 'M-Pesa', created_at: new Date().toISOString() }
-          ],
-          inventory: [
-            { id: 'i1', name: 'Brake Pads', category: 'Brakes', price: 1500, opening: 50, added: 10, sold: 15, reorder_level: 10, updated_at: new Date().toISOString() },
-            { id: 'i2', name: 'Oil Filter', category: 'Filters', price: 800, opening: 30, added: 5, sold: 25, reorder_level: 15, updated_at: new Date().toISOString() },
-            { id: 'i3', name: 'Spark Plug', category: 'Electrical', price: 450, opening: 100, added: 0, sold: 95, reorder_level: 20, updated_at: new Date().toISOString() }
-          ],
-          payroll: [
-            { id: 'p1', name: 'Peter mechanic', role: 'Lead Mechanic', type: 'Commission', base: 15000, comm_pct: 10, revenue: 50000, updated_at: new Date().toISOString() },
-            { id: 'p2', name: 'John mechanic', role: 'Junior Mechanic', type: 'Salary', base: 25000, comm_pct: 0, revenue: 0, updated_at: new Date().toISOString() }
-          ]
-        };
+ // ── APPS SCRIPT API URL ──────────────────────────────
+const GAS_URL = 'https://script.google.com/macros/s/YOUR_DEPLOYMENT_ID/exec';
+
+// ── FETCH-BASED SCRIPT RUNNER (replaces google.script.run) ──
+async function runScript(fnName, args, onSuccess, onError) {
+  try {
+    // Determine if it's a GET or POST call
+    const getActions = [
+      'getUserCount','getAllData','getSparePartsSales','getRepairs',
+      'getOrgJobs','getDebts','getExpenses','getInventory',
+      'getPayroll','getCustomers','getAuditLog'
+    ];
+
+    let response;
+
+    if (getActions.includes(fnName)) {
+      // GET request
+      response = await fetch(`${GAS_URL}?action=${fnName}`, {
+        method: 'GET',
+        redirect: 'follow'
+      });
+    } else {
+      // POST request — build body based on function
+      const body = buildPostBody(fnName, args);
+      response = await fetch(GAS_URL, {
+        method: 'POST',
+        redirect: 'follow',
+        headers: { 'Content-Type': 'text/plain' },
+        body: JSON.stringify(body)
+      });
+    }
+
+    const result = await response.json();
+
+    if (result && result.success === false) {
+      Toast.error(result.error || 'Server returned an error');
+      if (onError) onError(result);
+    } else {
+      if (onSuccess) onSuccess(result);
+    }
+
+  } catch (err) {
+    console.error('API Error:', err);
+    Toast.error('Connection failed. Check your network.');
+    if (onError) onError(err);
+  }
+}
+
+// ── POST BODY BUILDER ────────────────────────────────
+function buildPostBody(fnName, args) {
+  const user = SESSION ? SESSION.name : 'System';
+
+  // Auth actions
+  if (fnName === 'login') return { action: 'login', data: { username: args[0], passwordHash: args[1] } };
+  if (fnName === 'signup') return { action: 'signup', data: { name: args[0], username: args[1], role: args[2], passwordHash: args[3] } };
+  if (fnName === 'changePassword') return { action: 'changePassword', data: { username: args[0], oldHash: args[1], newHash: args[2] } };
+
+  // Single-data adds
+  const addActions = ['addSparePart','addRepair','addOrgJob','addDebt','addExpense','addInventoryItem','addEmployee','addCustomer'];
+  if (addActions.includes(fnName)) return { action: fnName, data: Array.isArray(args) ? args[0] : args, user };
+
+  // ID + data updates
+  const updateActions = ['updateSparePart','updateRepair','updateOrgJob','updateDebt','updateExpense','updateInventoryItem','savePayrollRow','updateCustomer'];
+  if (updateActions.includes(fnName)) return { action: fnName, id: args[0], data: args[1], user };
+
+  // ID-only deletes
+  const deleteActions = ['deleteSparePart','deleteRepair','deleteOrgJob','deleteDebt','deleteExpense','deleteInventoryItem','deleteEmployee','deleteCustomer'];
+  if (deleteActions.includes(fnName)) return { action: fnName, id: Array.isArray(args) ? args[0] : args, user };
+
+  // Special cases
+  if (fnName === 'recordPayment') return { action: 'recordPayment', id: args[0], data: { amount: args[1], method: args[2] }, user };
+  if (fnName === 'payEmployee') return { action: 'payEmployee', id: args[0], data: { paymentMethod: args[1] }, user };
+  if (fnName === 'decrementStock') return { action: 'decrementStock', data: { partName: args[0], qty: args[1] }, user };
+
+  return { action: fnName, data: args, user };
+}
 
         setTimeout(() => {
           if (fnName === 'getUserCount') {
