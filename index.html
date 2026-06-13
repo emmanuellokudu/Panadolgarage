@@ -4713,33 +4713,33 @@ const GAS_URL = 'https://script.google.com/macros/s/AKfycbxZWP4FC-KigzHEKBuau-oY
 // ── FETCH-BASED SCRIPT RUNNER (replaces google.script.run) ──
 async function runScript(fnName, args, onSuccess, onError) {
   try {
-    // Determine if it's a GET or POST call
     const getActions = [
       'getUserCount','getAllData','getSparePartsSales','getRepairs',
       'getOrgJobs','getDebts','getExpenses','getInventory',
       'getPayroll','getCustomers','getAuditLog'
     ];
 
-    let response;
+    let result;
 
     if (getActions.includes(fnName)) {
-      // GET request
-      response = await fetch(`${GAS_URL}?action=${fnName}`, {
+      // ── GET requests ──────────────────────────────
+      const res = await fetch(`${GAS_URL}?action=${fnName}`, {
         method: 'GET',
-        redirect: 'follow'
+        redirect: 'follow'   // ← critical for Apps Script redirects
       });
-    } else {
-      // POST request — build body based on function
-      const body = buildPostBody(fnName, args);
-      response = await fetch(GAS_URL, {
-        method: 'POST',
-        redirect: 'follow',
-        headers: { 'Content-Type': 'text/plain' },
-        body: JSON.stringify(body)
-      });
-    }
+      result = await res.json();
 
-    const result = await response.json();
+    } else {
+      // ── POST requests ─────────────────────────────
+      const body = buildPostBody(fnName, args);
+      const res = await fetch(GAS_URL, {
+        method: 'POST',
+        redirect: 'follow',  // ← critical for Apps Script redirects
+        body: JSON.stringify(body)
+        // ⚠️ Do NOT set Content-Type header — causes CORS preflight to fail
+      });
+      result = await res.json();
+    }
 
     if (result && result.success === false) {
       Toast.error(result.error || 'Server returned an error');
@@ -4749,8 +4749,8 @@ async function runScript(fnName, args, onSuccess, onError) {
     }
 
   } catch (err) {
-    console.error('API Error:', err);
-    Toast.error('Connection failed. Check your network.');
+    console.error('API Error:', fnName, err);
+    Toast.error('Connection failed — ' + err.message);
     if (onError) onError(err);
   }
 }
