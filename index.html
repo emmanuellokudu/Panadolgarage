@@ -4817,16 +4817,16 @@ function buildPostBody(fnName, args) {
         return;
       }
 
-      let runner = google.script.run
-        .withSuccessHandler(result => {
-          clearTimeout(timeoutHandle);
-          if (result && result.success === false) {
-            Toast.error(result.error || 'Server processed an error state');
-            if (onError) onError(result);
-          } else {
-            if (onSuccess) onSuccess(result);
-          }
-        })
+      // let runner = google.script.run
+      //   .withSuccessHandler(result => {
+      //     clearTimeout(timeoutHandle);
+      //     if (result && result.success === false) {
+      //       Toast.error(result.error || 'Server processed an error state');
+      //       if (onError) onError(result);
+      //     } else {
+      //       if (onSuccess) onSuccess(result);
+      //     }
+      //   })
         .withFailureHandler(err => {
           clearTimeout(timeoutHandle);
           Toast.error(err.message || 'System Network failure occurred');
