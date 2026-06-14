@@ -44,11 +44,11 @@
       --info-soft: #DBEAFE;
 
       /* Elevation */
-      --shadow-xs: 0 1px 2px rgba(0,0,0,0.04);
-      --shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
-      --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.07), 0 2px 4px -2px rgba(0,0,0,0.05);
-      --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.08), 0 4px 6px -4px rgba(0,0,0,0.04);
-      --shadow-xl: 0 20px 25px -5px rgba(0,0,0,0.08), 0 8px 10px -6px rgba(0,0,0,0.04);
+      --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.04);
+      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04);
+      --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
       --shadow-glow: 0 0 20px var(--red-glow);
 
       /* Radius */
@@ -71,16 +71,24 @@
       --duration-slow: 400ms;
 
       /* Spacing */
-      --sp-1: 4px; --sp-2: 8px; --sp-3: 12px; --sp-4: 16px;
-      --sp-5: 20px; --sp-6: 24px; --sp-8: 32px; --sp-10: 40px;
+      --sp-1: 4px;
+      --sp-2: 8px;
+      --sp-3: 12px;
+      --sp-4: 16px;
+      --sp-5: 20px;
+      --sp-6: 24px;
+      --sp-8: 32px;
+      --sp-10: 40px;
 
       /* Glass */
-      --glass-bg: rgba(255,255,255,0.72);
-      --glass-border: rgba(255,255,255,0.2);
+      --glass-bg: rgba(255, 255, 255, 0.72);
+      --glass-border: rgba(255, 255, 255, 0.2);
       --glass-blur: blur(16px);
     }
 
-    *, *::before, *::after {
+    *,
+    *::before,
+    *::after {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
@@ -97,25 +105,48 @@
       font-size: 14px;
     }
 
-    h1, h2, h3, h4, .kpi-value {
+    h1,
+    h2,
+    h3,
+    h4,
+    .kpi-value {
       font-family: var(--font-syne);
       font-weight: 700;
       line-height: 1.3;
     }
 
-    a { text-decoration: none; color: inherit; }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
 
-    button, input, select, textarea {
+    button,
+    input,
+    select,
+    textarea {
       font-family: inherit;
       font-size: inherit;
       outline: none;
     }
 
     /* SCROLLBAR */
-    ::-webkit-scrollbar { width: 6px; height: 6px; }
-    ::-webkit-scrollbar-track { background: transparent; }
-    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: var(--radius-full); }
-    ::-webkit-scrollbar-thumb:hover { background: var(--muted); }
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--border);
+      border-radius: var(--radius-full);
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--muted);
+    }
 
     /* FOCUS RING */
     *:focus-visible {
@@ -141,7 +172,7 @@
       flex-shrink: 0;
       transition: width var(--duration-normal) var(--ease-out), transform var(--duration-normal) var(--ease-out);
       z-index: 100;
-      border-right: 1px solid rgba(255,255,255,0.06);
+      border-right: 1px solid rgba(255, 255, 255, 0.06);
     }
 
     .sidebar-header {
@@ -182,7 +213,7 @@
 
     .sidebar-brand p {
       font-size: 10px;
-      color: rgba(255,255,255,0.4);
+      color: rgba(255, 255, 255, 0.4);
       white-space: nowrap;
     }
 
@@ -236,7 +267,7 @@
     }
 
     .nav-item button:hover {
-      background: rgba(255,255,255,0.06);
+      background: rgba(255, 255, 255, 0.06);
       color: #FFF;
     }
 
@@ -502,6 +533,7 @@
         opacity: 0;
         transform: scale(0.95) translateY(-10px);
       }
+
       to {
         opacity: 1;
         transform: scale(1) translateY(0);
@@ -695,7 +727,7 @@
       right: -20%;
       width: 300px;
       height: 300px;
-      background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 60%);
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.08) 0%, transparent 60%);
       pointer-events: none;
     }
 
@@ -741,7 +773,7 @@
       right: 0;
       width: 80px;
       height: 80px;
-      background: linear-gradient(135deg, transparent 40%, rgba(227,30,36,0.04));
+      background: linear-gradient(135deg, transparent 40%, rgba(227, 30, 36, 0.04));
       border-radius: 0 0 0 80px;
       pointer-events: none;
     }
@@ -1641,12 +1673,14 @@
       left: -50%;
       width: 200%;
       height: 200%;
-      background: radial-gradient(circle at 30% 50%, rgba(227,30,36,0.08) 0%, transparent 50%);
+      background: radial-gradient(circle at 30% 50%, rgba(227, 30, 36, 0.08) 0%, transparent 50%);
       animation: authGlow 8s ease-in-out infinite alternate;
     }
 
     @keyframes authGlow {
-      to { transform: translate(10%, 5%); }
+      to {
+        transform: translate(10%, 5%);
+      }
     }
 
     .auth-card {
@@ -2223,7 +2257,7 @@
         <div class="topbar-right">
           <button class="btn-ghost no-print" id="btn-print-screen">🖨️ <span>Print View</span></button>
           <button class="btn-primary no-print" id="btn-quick-record-add">➕ Add Record</button>
-          
+
           <!-- Notifications Bell -->
           <div class="notification-container no-print">
             <button class="btn-icon" id="btn-notifications-trigger" aria-label="Notifications" title="Notifications">
@@ -2233,7 +2267,9 @@
             <div class="notification-dropdown" id="notification-dropdown-menu">
               <div class="notification-dropdown-header">
                 <h3>Notifications</h3>
-                <button class="btn-text-link" id="btn-mark-all-read" style="font-size:12px; background:none; border:none; color:var(--red); cursor:pointer; font-weight:600;">Clear All</button>
+                <button class="btn-text-link" id="btn-mark-all-read"
+                  style="font-size:12px; background:none; border:none; color:var(--red); cursor:pointer; font-weight:600;">Clear
+                  All</button>
               </div>
               <ul class="notification-list" id="notification-items-list">
                 <!-- Dynamically populated -->
@@ -2389,10 +2425,13 @@
               <div class="card-header">
                 <h3 class="card-title">📦 Inventory Insights</h3>
               </div>
-              <div class="card-body" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; padding: 20px;">
+              <div class="card-body"
+                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; padding: 20px;">
                 <!-- Top 5 Selling Parts -->
                 <div>
-                  <h4 style="font-size: 13px; margin-bottom: 8px; color: var(--text-secondary); text-transform: uppercase; font-weight: 600; letter-spacing: 0.5px;">🔥 Top Selling Parts</h4>
+                  <h4
+                    style="font-size: 13px; margin-bottom: 8px; color: var(--text-secondary); text-transform: uppercase; font-weight: 600; letter-spacing: 0.5px;">
+                    🔥 Top Selling Parts</h4>
                   <div class="table-responsive">
                     <table>
                       <thead>
@@ -2402,14 +2441,19 @@
                         </tr>
                       </thead>
                       <tbody id="dashboard-top-parts">
-                        <tr><td colspan="2" style="text-align: center; color: var(--muted); font-style: italic;">No sales recorded</td></tr>
+                        <tr>
+                          <td colspan="2" style="text-align: center; color: var(--muted); font-style: italic;">No sales
+                            recorded</td>
+                        </tr>
                       </tbody>
                     </table>
                   </div>
                 </div>
                 <!-- Low Stock Items -->
                 <div>
-                  <h4 style="font-size: 13px; margin-bottom: 8px; color: var(--danger); text-transform: uppercase; font-weight: 600; letter-spacing: 0.5px;">🚨 Low Stock Items</h4>
+                  <h4
+                    style="font-size: 13px; margin-bottom: 8px; color: var(--danger); text-transform: uppercase; font-weight: 600; letter-spacing: 0.5px;">
+                    🚨 Low Stock Items</h4>
                   <div class="table-responsive">
                     <table>
                       <thead>
@@ -2420,7 +2464,10 @@
                         </tr>
                       </thead>
                       <tbody id="dashboard-low-stock-items">
-                        <tr><td colspan="3" style="text-align: center; color: var(--muted); font-style: italic;">All stock healthy</td></tr>
+                        <tr>
+                          <td colspan="3" style="text-align: center; color: var(--muted); font-style: italic;">All stock
+                            healthy</td>
+                        </tr>
                       </tbody>
                     </table>
                   </div>
@@ -2443,7 +2490,10 @@
                       </tr>
                     </thead>
                     <tbody id="dashboard-active-mechanics">
-                      <tr><td colspan="2" style="text-align: center; color: var(--muted); font-style: italic;">No active mechanics</td></tr>
+                      <tr>
+                        <td colspan="2" style="text-align: center; color: var(--muted); font-style: italic;">No active
+                          mechanics</td>
+                      </tr>
                     </tbody>
                   </table>
                 </div>
@@ -2743,7 +2793,8 @@
                 <div class="form-grid">
                   <div class="form-group">
                     <label for="repair-mechanic">Assigned Mechanic</label>
-                    <input type="text" id="repair-mechanic" class="form-control" list="mechanic-list" placeholder="Choose or type name">
+                    <input type="text" id="repair-mechanic" class="form-control" list="mechanic-list"
+                      placeholder="Choose or type name">
                   </div>
                   <div class="form-group">
                     <label for="repair-parts">Parts Used (Text description)</label>
@@ -2876,6 +2927,12 @@
                     </select>
                     <span class="form-error"></span>
                   </div>
+                  <div class="form-group" id="org-name-manual-group" style="display: none;">
+                    <label for="org-name-manual">Organisation Name <span class="req">*</span></label>
+                    <input type="text" id="org-name-manual" class="form-control"
+                      placeholder="Enter organisation name">
+                    <span class="form-error"></span>
+                  </div>
                   <div class="form-group">
                     <label for="org-bikes">No. of Bikes / Vehicles <span class="req">*</span></label>
                     <input type="number" id="org-bikes" class="form-control" min="1" step="1" required>
@@ -2911,7 +2968,8 @@
                   </div>
                   <div class="form-group">
                     <label for="org-mechanic">Mechanic</label>
-                    <input type="text" id="org-mechanic" class="form-control" list="mechanic-list" placeholder="Choose or type name">
+                    <input type="text" id="org-mechanic" class="form-control" list="mechanic-list"
+                      placeholder="Choose or type name">
                   </div>
                   <div class="form-group">
                     <label for="org-labour">Labour Fee (KES) <span class="req">*</span></label>
@@ -3332,7 +3390,8 @@
                   </div>
                   <div class="form-group">
                     <label for="payroll-role">Job Role / Designation <span class="req">*</span></label>
-                    <input type="text" id="payroll-role" class="form-control" placeholder="E.g., Senior Mechanic" required>
+                    <input type="text" id="payroll-role" class="form-control" placeholder="E.g., Senior Mechanic"
+                      required>
                     <span class="form-error"></span>
                   </div>
                   <div class="form-group">
@@ -3353,7 +3412,8 @@
                   </div>
                   <div class="form-group">
                     <label for="payroll-comm-pct">Commission Percentage (%) <span class="req">*</span></label>
-                    <input type="number" id="payroll-comm-pct" class="form-control" min="0" max="100" value="0" required>
+                    <input type="number" id="payroll-comm-pct" class="form-control" min="0" max="100" value="0"
+                      required>
                     <span class="form-error"></span>
                   </div>
                   <div class="form-group">
@@ -3684,7 +3744,8 @@
             <div class="card">
               <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
                 <h3 class="card-title">👥 Registered Customers</h3>
-                <button class="btn-primary" id="btn-add-customer-trigger" style="font-size: 12px; padding: 6px 12px;">➕ Add Customer</button>
+                <button class="btn-primary" id="btn-add-customer-trigger" style="font-size: 12px; padding: 6px 12px;">➕
+                  Add Customer</button>
               </div>
               <div class="card-body">
                 <div class="table-card-spinner" id="customers-table-spinner" style="display: none;">
@@ -3693,7 +3754,8 @@
                 <div class="table-actions-row no-print" style="margin-bottom: var(--sp-4);">
                   <div class="search-box">
                     <span class="search-icon">🔍</span>
-                    <input type="text" class="search-input" id="customers-search" placeholder="Search name, phone, plate...">
+                    <input type="text" class="search-input" id="customers-search"
+                      placeholder="Search name, phone, plate...">
                   </div>
                 </div>
                 <div class="table-responsive">
@@ -3711,7 +3773,9 @@
                     </tbody>
                   </table>
                 </div>
-                <div id="customers-pagination" style="display: flex; justify-content: space-between; align-items: center; margin-top: var(--sp-4);"></div>
+                <div id="customers-pagination"
+                  style="display: flex; justify-content: space-between; align-items: center; margin-top: var(--sp-4);">
+                </div>
               </div>
             </div>
 
@@ -3719,7 +3783,8 @@
             <div class="card" id="customer-profile-card">
               <div class="card-body" style="text-align: center; padding: var(--sp-12); color: var(--muted);">
                 <span style="font-size: 48px; display: block; margin-bottom: var(--sp-4);">👤</span>
-                <p style="font-size: 14px; font-weight: 500;">Select a customer from the registry to view their vehicles, outstanding balance, and service history timeline.</p>
+                <p style="font-size: 14px; font-weight: 500;">Select a customer from the registry to view their
+                  vehicles, outstanding balance, and service history timeline.</p>
               </div>
             </div>
           </div>
@@ -3740,10 +3805,12 @@
               <div class="table-card-spinner" id="audit-table-spinner" style="display: none;">
                 <div class="spinner"></div>
               </div>
-              <div class="table-actions-row no-print" style="display: flex; gap: var(--sp-4); margin-bottom: var(--sp-4); flex-wrap: wrap;">
+              <div class="table-actions-row no-print"
+                style="display: flex; gap: var(--sp-4); margin-bottom: var(--sp-4); flex-wrap: wrap;">
                 <div class="search-box" style="flex: 1; min-width: 200px;">
                   <span class="search-icon">🔍</span>
-                  <input type="text" class="search-input" id="audit-search" placeholder="Search action, details, user...">
+                  <input type="text" class="search-input" id="audit-search"
+                    placeholder="Search action, details, user...">
                 </div>
                 <div class="form-group" style="margin: 0; min-width: 150px;">
                   <select id="audit-filter-module" class="form-control" style="height: 38px;">
@@ -3788,7 +3855,9 @@
                   </tbody>
                 </table>
               </div>
-              <div id="audit-pagination" style="display: flex; justify-content: space-between; align-items: center; margin-top: var(--sp-4);"></div>
+              <div id="audit-pagination"
+                style="display: flex; justify-content: space-between; align-items: center; margin-top: var(--sp-4);">
+              </div>
             </div>
           </div>
         </section>
@@ -3809,7 +3878,7 @@
       </div>
       <div class="modal-body">
         <p style="font-size: 14px; color: var(--text); margin-bottom: 15px;" id="pay-employee-message"></p>
-        
+
         <div class="form-group">
           <label for="pay-employee-payment-method">Payment Method <span class="req">*</span></label>
           <select id="pay-employee-payment-method" class="form-control">
@@ -3870,7 +3939,8 @@
             </div>
             <div style="display: flex; justify-content: space-between; font-weight: 700;"><span>Balance Due:</span>
               <span id="receipt-balance-due" style="font-family: var(--font-mono); color: var(--danger);">KES
-                0.00</span></div>
+                0.00</span>
+            </div>
           </div>
 
           <div class="form-grid" style="grid-template-columns: 1fr;">
@@ -4006,7 +4076,8 @@
             </div>
             <div class="form-group">
               <label for="edit-repair-mechanic">Mechanic</label>
-              <input type="text" id="edit-repair-mechanic" class="form-control" list="mechanic-list" placeholder="Choose or type name">
+              <input type="text" id="edit-repair-mechanic" class="form-control" list="mechanic-list"
+                placeholder="Choose or type name">
             </div>
           </div>
           <div class="form-grid" style="grid-template-columns: 1fr;">
@@ -4049,7 +4120,8 @@
           <div class="form-grid" style="grid-template-columns: 1fr;">
             <div class="form-group">
               <label for="edit-repair-notes">Progress Notes / Completion Remarks</label>
-              <textarea id="edit-repair-notes" class="form-control" rows="2" placeholder="E.g., Replaced piston rings, tested engine compression..."></textarea>
+              <textarea id="edit-repair-notes" class="form-control" rows="2"
+                placeholder="E.g., Replaced piston rings, tested engine compression..."></textarea>
             </div>
           </div>
         </div>
@@ -4087,6 +4159,12 @@
                 <option value="Generation Aid">Generation Aid</option>
                 <option value="Other">Other</option>
               </select>
+              <span class="form-error"></span>
+            </div>
+            <div class="form-group" id="edit-org-name-manual-group" style="display: none;">
+              <label for="edit-org-name-manual">Organisation Name <span class="req">*</span></label>
+              <input type="text" id="edit-org-name-manual" class="form-control"
+                placeholder="Enter organisation name">
               <span class="form-error"></span>
             </div>
             <div class="form-group">
@@ -4130,7 +4208,8 @@
             </div>
             <div class="form-group">
               <label for="edit-org-mechanic">Mechanic</label>
-              <input type="text" id="edit-org-mechanic" class="form-control" list="mechanic-list" placeholder="Choose or type name">
+              <input type="text" id="edit-org-mechanic" class="form-control" list="mechanic-list"
+                placeholder="Choose or type name">
             </div>
             <div class="form-group">
               <label for="edit-org-labour">Labour Fee <span class="req">*</span></label>
@@ -4458,7 +4537,8 @@
               <input type="text" id="cust-address" class="form-control" placeholder="E.g., Nairobi, Kenya">
             </div>
           </div>
-          <div class="form-grid" style="border-top: 1px solid var(--border); padding-top: var(--sp-4); margin-top: var(--sp-4);">
+          <div class="form-grid"
+            style="border-top: 1px solid var(--border); padding-top: var(--sp-4); margin-top: var(--sp-4);">
             <div class="form-group">
               <label for="cust-vehicle-reg">Vehicle Plate (Registration)</label>
               <input type="text" id="cust-vehicle-reg" class="form-control" placeholder="E.g., KBC 123X">
@@ -4473,12 +4553,14 @@
             </div>
             <div class="form-group">
               <label for="cust-vehicle-year">Vehicle Year</label>
-              <input type="number" id="cust-vehicle-year" class="form-control" min="1950" max="2030" placeholder="E.g., 2020">
+              <input type="number" id="cust-vehicle-year" class="form-control" min="1950" max="2030"
+                placeholder="E.g., 2020">
             </div>
           </div>
           <div class="form-group span-full" style="margin-top: var(--sp-4);">
             <label for="cust-notes">Customer Notes / History Notes</label>
-            <textarea id="cust-notes" class="form-control" rows="2" placeholder="Any special requests or fleet notes..."></textarea>
+            <textarea id="cust-notes" class="form-control" rows="2"
+              placeholder="Any special requests or fleet notes..."></textarea>
           </div>
         </form>
       </div>
@@ -4490,8 +4572,8 @@
   </div>
 
   <!-- EDIT CUSTOMER MODAL -->
-  <div id="modal-edit-customer" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-edit-customer-title"
-    aria-hidden="true">
+  <div id="modal-edit-customer" class="modal" role="dialog" aria-modal="true"
+    aria-labelledby="modal-edit-customer-title" aria-hidden="true">
     <div class="modal-content" style="max-width: 600px;">
       <div class="modal-header">
         <h2 class="modal-title" id="modal-edit-customer-title">✏️ Edit Customer Profile</h2>
@@ -4522,7 +4604,8 @@
               <input type="text" id="edit-cust-address" class="form-control">
             </div>
           </div>
-          <div class="form-grid" style="border-top: 1px solid var(--border); padding-top: var(--sp-4); margin-top: var(--sp-4);">
+          <div class="form-grid"
+            style="border-top: 1px solid var(--border); padding-top: var(--sp-4); margin-top: var(--sp-4);">
             <div class="form-group">
               <label for="edit-cust-vehicle-reg">Vehicle Plate (Registration)</label>
               <input type="text" id="edit-cust-vehicle-reg" class="form-control">
@@ -4546,8 +4629,11 @@
           </div>
         </form>
       </div>
-      <div class="modal-footer" style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
-        <button class="btn-ghost" id="btn-edit-customer-delete" style="color: var(--danger); border-color: var(--danger-soft); background: transparent; padding: 8px var(--sp-4); border-radius: var(--radius-md); font-weight: 600;">🗑️ Delete</button>
+      <div class="modal-footer"
+        style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+        <button class="btn-ghost" id="btn-edit-customer-delete"
+          style="color: var(--danger); border-color: var(--danger-soft); background: transparent; padding: 8px var(--sp-4); border-radius: var(--radius-md); font-weight: 600;">🗑️
+          Delete</button>
         <div style="display: flex; gap: var(--sp-2);">
           <button class="btn-ghost" id="btn-edit-customer-cancel">Cancel</button>
           <button class="btn-primary" id="btn-edit-customer-save">💾 Save Changes</button>
@@ -4607,7 +4693,7 @@
     // Debounce for search inputs
     function debounce(fn, delay = 300) {
       let timer;
-      return function(...args) {
+      return function (...args) {
         clearTimeout(timer);
         timer = setTimeout(() => fn.apply(this, args), delay);
       };
@@ -4707,82 +4793,82 @@
     };
 
     // CLIENT WRAPPER FOR GOOGLE APPS SCRIPT
- // ── APPS SCRIPT API URL ──────────────────────────────
-const GAS_URL = 'https://script.google.com/macros/s/AKfycbzlvegmC6tih1OtJ07lqLhu0nS0zdqyw9iozHa7Vs99sg3vYrXo-7sxaAvzYaLeltH2/exec';
+    // ── APPS SCRIPT API URL ──────────────────────────────
+    const GAS_URL = 'https://script.google.com/macros/s/AKfycbwr1c5tbQc7Egx9YpsarQ4y8UoWAURM9KmLN7M1Rx5Eb6gfE9LOfES7rjwKHm-j-BjJxg/exec';
 
-// ── FETCH-BASED SCRIPT RUNNER (replaces google.script.run) ──
-async function runScript(fnName, args, onSuccess, onError) {
-  try {
-    const getActions = [
-      'getUserCount','getAllData','getSparePartsSales','getRepairs',
-      'getOrgJobs','getDebts','getExpenses','getInventory',
-      'getPayroll','getCustomers','getAuditLog'
-    ];
+    // ── FETCH-BASED SCRIPT RUNNER (replaces google.script.run) ──
+    async function runScript(fnName, args, onSuccess, onError) {
+      try {
+        const getActions = [
+          'getUserCount', 'getAllData', 'getSparePartsSales', 'getRepairs',
+          'getOrgJobs', 'getDebts', 'getExpenses', 'getInventory',
+          'getPayroll', 'getCustomers', 'getAuditLog'
+        ];
 
-    let result;
+        let result;
 
-    if (getActions.includes(fnName)) {
-      // ── GET requests ──────────────────────────────
-      const res = await fetch(`${GAS_URL}?action=${fnName}`, {
-        method: 'GET',
-        redirect: 'follow'   // ← critical for Apps Script redirects
-      });
-      result = await res.json();
+        if (getActions.includes(fnName)) {
+          // ── GET requests ──────────────────────────────
+          const res = await fetch(`${GAS_URL}?action=${fnName}`, {
+            method: 'GET',
+            redirect: 'follow'   // ← critical for Apps Script redirects
+          });
+          result = await res.json();
 
-    } else {
-      // ── POST requests ─────────────────────────────
-      const body = buildPostBody(fnName, args);
-      const res = await fetch(GAS_URL, {
-        method: 'POST',
-        redirect: 'follow',  // ← critical for Apps Script redirects
-        body: JSON.stringify(body)
-        // ⚠️ Do NOT set Content-Type header — causes CORS preflight to fail
-      });
-      result = await res.json();
+        } else {
+          // ── POST requests ─────────────────────────────
+          const body = buildPostBody(fnName, args);
+          const res = await fetch(GAS_URL, {
+            method: 'POST',
+            redirect: 'follow',  // ← critical for Apps Script redirects
+            body: JSON.stringify(body)
+            // ⚠️ Do NOT set Content-Type header — causes CORS preflight to fail
+          });
+          result = await res.json();
+        }
+
+        if (result && result.success === false) {
+          Toast.error(result.error || 'Server returned an error');
+          if (onError) onError(result);
+        } else {
+          if (onSuccess) onSuccess(result);
+        }
+
+      } catch (err) {
+        console.error('API Error:', fnName, err);
+        Toast.error('Connection failed — ' + err.message);
+        if (onError) onError(err);
+      }
     }
 
-    if (result && result.success === false) {
-      Toast.error(result.error || 'Server returned an error');
-      if (onError) onError(result);
-    } else {
-      if (onSuccess) onSuccess(result);
+    // ── POST BODY BUILDER ────────────────────────────────
+    function buildPostBody(fnName, args) {
+      const user = SESSION ? SESSION.name : 'System';
+
+      // Auth actions
+      if (fnName === 'login') return { action: 'login', data: { username: args[0], passwordHash: args[1] } };
+      if (fnName === 'signup') return { action: 'signup', data: { name: args[0], username: args[1], role: args[2], passwordHash: args[3] } };
+      if (fnName === 'changePassword') return { action: 'changePassword', data: { username: args[0], oldHash: args[1], newHash: args[2] } };
+
+      // Single-data adds
+      const addActions = ['addSparePart', 'addRepair', 'addOrgJob', 'addDebt', 'addExpense', 'addInventoryItem', 'addEmployee', 'addCustomer'];
+      if (addActions.includes(fnName)) return { action: fnName, data: Array.isArray(args) ? args[0] : args, user };
+
+      // ID + data updates
+      const updateActions = ['updateSparePart', 'updateRepair', 'updateOrgJob', 'updateDebt', 'updateExpense', 'updateInventoryItem', 'savePayrollRow', 'updateCustomer'];
+      if (updateActions.includes(fnName)) return { action: fnName, id: args[0], data: args[1], user };
+
+      // ID-only deletes
+      const deleteActions = ['deleteSparePart', 'deleteRepair', 'deleteOrgJob', 'deleteDebt', 'deleteExpense', 'deleteInventoryItem', 'deleteEmployee', 'deleteCustomer'];
+      if (deleteActions.includes(fnName)) return { action: fnName, id: Array.isArray(args) ? args[0] : args, user };
+
+      // Special cases
+      if (fnName === 'recordPayment') return { action: 'recordPayment', id: args[0], data: { amount: args[1], method: args[2] }, user };
+      if (fnName === 'payEmployee') return { action: 'payEmployee', id: args[0], data: { paymentMethod: args[1] }, user };
+      if (fnName === 'decrementStock') return { action: 'decrementStock', data: { partName: args[0], qty: args[1] }, user };
+
+      return { action: fnName, data: args, user };
     }
-
-  } catch (err) {
-    console.error('API Error:', fnName, err);
-    Toast.error('Connection failed — ' + err.message);
-    if (onError) onError(err);
-  }
-}
-
-// ── POST BODY BUILDER ────────────────────────────────
-function buildPostBody(fnName, args) {
-  const user = SESSION ? SESSION.name : 'System';
-
-  // Auth actions
-  if (fnName === 'login') return { action: 'login', data: { username: args[0], passwordHash: args[1] } };
-  if (fnName === 'signup') return { action: 'signup', data: { name: args[0], username: args[1], role: args[2], passwordHash: args[3] } };
-  if (fnName === 'changePassword') return { action: 'changePassword', data: { username: args[0], oldHash: args[1], newHash: args[2] } };
-
-  // Single-data adds
-  const addActions = ['addSparePart','addRepair','addOrgJob','addDebt','addExpense','addInventoryItem','addEmployee','addCustomer'];
-  if (addActions.includes(fnName)) return { action: fnName, data: Array.isArray(args) ? args[0] : args, user };
-
-  // ID + data updates
-  const updateActions = ['updateSparePart','updateRepair','updateOrgJob','updateDebt','updateExpense','updateInventoryItem','savePayrollRow','updateCustomer'];
-  if (updateActions.includes(fnName)) return { action: fnName, id: args[0], data: args[1], user };
-
-  // ID-only deletes
-  const deleteActions = ['deleteSparePart','deleteRepair','deleteOrgJob','deleteDebt','deleteExpense','deleteInventoryItem','deleteEmployee','deleteCustomer'];
-  if (deleteActions.includes(fnName)) return { action: fnName, id: Array.isArray(args) ? args[0] : args, user };
-
-  // Special cases
-  if (fnName === 'recordPayment') return { action: 'recordPayment', id: args[0], data: { amount: args[1], method: args[2] }, user };
-  if (fnName === 'payEmployee') return { action: 'payEmployee', id: args[0], data: { paymentMethod: args[1] }, user };
-  if (fnName === 'decrementStock') return { action: 'decrementStock', data: { partName: args[0], qty: args[1] }, user };
-
-  return { action: fnName, data: args, user };
-}
 
     //     setTimeout(() => {
     //       if (fnName === 'getUserCount') {
@@ -4941,6 +5027,17 @@ function buildPostBody(fnName, args) {
       }
     };
 
+    const knownCorporateOrgs = ['FHI', 'SIR', 'FCA', 'Generation Aid'];
+    const toggleManualOrgName = (selectId, groupId, inputId) => {
+      const isOther = $(selectId).value === 'Other';
+      $(groupId).style.display = isOther ? 'block' : 'none';
+      $(inputId).required = isOther;
+      if (!isOther) {
+        $(inputId).value = '';
+        Validator.clearError($(inputId));
+      }
+    };
+
     // EXPORT TO CSV CONVERTER
     function exportToCSV(filename, headers, rows) {
       const escapedHeaders = headers.map(h => `"${String(h).replace(/"/g, '""')}"`).join(',');
@@ -5043,6 +5140,14 @@ function buildPostBody(fnName, args) {
       $('org-parts-cost').addEventListener('input', computeOrgTotal);
       $('org-labour').addEventListener('input', computeOrgTotal);
 
+      $('org-name').addEventListener('change', () => {
+        toggleManualOrgName('org-name', 'org-name-manual-group', 'org-name-manual');
+      });
+
+      $('edit-org-name').addEventListener('change', () => {
+        toggleManualOrgName('edit-org-name', 'edit-org-name-manual-group', 'edit-org-name-manual');
+      });
+
       // Sidebar Toggle (Desktop Collapse / Mobile Drawer)
       $('btn-sidebar-toggle').addEventListener('click', () => {
         if (window.innerWidth <= 1024) {
@@ -5078,6 +5183,9 @@ function buildPostBody(fnName, args) {
       document.querySelectorAll('.card.no-print form').forEach(form => {
         form.addEventListener('reset', () => {
           setTimeout(() => {
+            if (form.id === 'org-job-form') {
+              toggleManualOrgName('org-name', 'org-name-manual-group', 'org-name-manual');
+            }
             const formCard = form.closest('.card.no-print');
             if (formCard) formCard.style.display = 'none';
           }, 10);
@@ -5716,7 +5824,7 @@ function buildPostBody(fnName, args) {
       }
 
       const todayString = getLocalDateString();
-      
+
       // Check database validity before updating stats (Today Total Sales, Today Invoices, Cash Revenue, M-Pesa Revenue, Credit Total)
       let databaseValid = Array.isArray(DB.spareParts);
       if (databaseValid && DB.spareParts.length > 0) {
@@ -5823,7 +5931,7 @@ function buildPostBody(fnName, args) {
           };
         });
       }
-      
+
       bindSparePartsActions(tbody);
     }
 
@@ -6000,7 +6108,14 @@ function buildPostBody(fnName, args) {
           if (item) {
             $('edit-org-id').value = item.id;
             $('edit-org-date').value = item.date;
-            $('edit-org-name').value = item.org_name;
+            if (knownCorporateOrgs.includes(item.org_name)) {
+              $('edit-org-name').value = item.org_name;
+              $('edit-org-name-manual').value = '';
+            } else {
+              $('edit-org-name').value = 'Other';
+              $('edit-org-name-manual').value = item.org_name || '';
+            }
+            toggleManualOrgName('edit-org-name', 'edit-org-name-manual-group', 'edit-org-name-manual');
             $('edit-org-bikes').value = item.bikes;
             $('edit-org-reg').value = item.reg;
             $('edit-org-model').value = item.model || '';
@@ -6387,15 +6502,15 @@ function buildPostBody(fnName, args) {
           const id = btn.getAttribute('data-id');
           const emp = DB.payroll.find(e => e.id === id);
           if (!emp) return;
-          
+
           const commEarned = emp.type === 'Commission' ? (Number(emp.base) * Number(emp.comm_pct) / 100) : 0;
           const totalPay = Number(emp.base) + commEarned;
-          
+
           APP.payEmployeeId = id;
           APP.payEmployeeAmount = totalPay;
-          
+
           $('pay-employee-message').innerHTML = `Are you sure you want to disburse <strong>${formatCurrency(totalPay)}</strong> to <strong>${escapeHtml(emp.name)}</strong>?<br><br>Confirming this will automatically create an operating expense entry and reset their accumulated revenue/commission in the payroll ledger.`;
-          
+
           $('pay-employee-payment-method').value = 'Cash';
           Modal.open('modal-pay-employee');
         };
@@ -6701,7 +6816,7 @@ function buildPostBody(fnName, args) {
 
       let filtered = DB.customers || [];
       if (searchVal) {
-        filtered = filtered.filter(c => 
+        filtered = filtered.filter(c =>
           (c.name && String(c.name).toLowerCase().includes(searchVal)) ||
           (c.phone && String(c.phone).toLowerCase().includes(searchVal)) ||
           (c.vehicle_reg && String(c.vehicle_reg).toLowerCase().includes(searchVal))
@@ -6771,14 +6886,14 @@ function buildPostBody(fnName, args) {
       // Compile Fleet details: default + historical from repairs
       const historicalPlates = new Set();
       if (activeCustomer.vehicle_reg) historicalPlates.add(activeCustomer.vehicle_reg.trim().toUpperCase());
-      
+
       // Match repairs or parts sales by phone or customer name
-      const customerRepairs = DB.repairs.filter(r => 
+      const customerRepairs = DB.repairs.filter(r =>
         (r.phone && String(r.phone).trim() === String(activeCustomer.phone).trim()) ||
         (r.customer && String(r.customer).trim().toLowerCase() === String(activeCustomer.name).trim().toLowerCase())
       );
 
-      const customerPartsSales = DB.spareParts.filter(p => 
+      const customerPartsSales = DB.spareParts.filter(p =>
         (p.phone && String(p.phone).trim() === String(activeCustomer.phone).trim()) ||
         (p.customer && String(p.customer).trim().toLowerCase() === String(activeCustomer.name).trim().toLowerCase())
       );
@@ -6788,7 +6903,7 @@ function buildPostBody(fnName, args) {
       });
 
       // Calculate Outstanding Balance
-      const customerDebts = DB.debts.filter(d => 
+      const customerDebts = DB.debts.filter(d =>
         (d.phone && String(d.phone).trim() === String(activeCustomer.phone).trim()) ||
         (d.name && String(d.name).trim().toLowerCase() === String(activeCustomer.name).trim().toLowerCase())
       );
@@ -6864,9 +6979,9 @@ function buildPostBody(fnName, args) {
         timelineHtml = `
           <div class="timeline" style="position:relative; padding-left: 20px; border-left: 2px solid var(--border); margin-left: 10px; display:flex; flex-direction:column; gap:16px;">
             ${timelineEvents.map(e => {
-              const dateStr = new Date(e.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
-              if (e.type === 'repair') {
-                return `
+          const dateStr = new Date(e.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+          if (e.type === 'repair') {
+            return `
                   <div class="timeline-item" style="position:relative;">
                     <div style="position:absolute; left:-27px; top:2px; background:var(--primary); color:#FFF; width:14px; height:14px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:8px;"></div>
                     <span style="font-size:11px; color:var(--muted); font-weight:600;">${dateStr}</span>
@@ -6880,8 +6995,8 @@ function buildPostBody(fnName, args) {
                     ${e.notes ? `<blockquote style="margin: 6px 0 0 0; border-left: 2px solid var(--border); padding-left: 8px; font-style:italic; font-size:12px; color:var(--muted);">"${escapeHtml(e.notes)}"</blockquote>` : ''}
                   </div>
                 `;
-              } else {
-                return `
+          } else {
+            return `
                   <div class="timeline-item" style="position:relative;">
                     <div style="position:absolute; left:-27px; top:2px; background:var(--success); color:#FFF; width:14px; height:14px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:8px;"></div>
                     <span style="font-size:11px; color:var(--muted); font-weight:600;">${dateStr}</span>
@@ -6893,8 +7008,8 @@ function buildPostBody(fnName, args) {
                     </div>
                   </div>
                 `;
-              }
-            }).join('')}
+          }
+        }).join('')}
           </div>
         `;
       }
@@ -6996,7 +7111,7 @@ function buildPostBody(fnName, args) {
 
       // Filter by Search
       if (searchVal) {
-        filtered = filtered.filter(l => 
+        filtered = filtered.filter(l =>
           (l.user_name && String(l.user_name).toLowerCase().includes(searchVal)) ||
           (l.action && String(l.action).toLowerCase().includes(searchVal)) ||
           (l.details && String(l.details).toLowerCase().includes(searchVal)) ||
@@ -7109,10 +7224,10 @@ function buildPostBody(fnName, args) {
 
       runScript('payEmployee', [id, paymentMethod], () => {
         Toast.success('Disbursed employee payment and updated operating expenses successfully!');
-        
+
         // Sync payroll page
         syncCollection('payroll', 'payroll-table-spinner');
-        
+
         // Fetch operating expenses and force rendering of the expenses table immediately
         runScript('getExpenses', [], (res) => {
           DB.expenses = res.data || res;
@@ -7291,7 +7406,9 @@ function buildPostBody(fnName, args) {
       const partsCost = Number($('org-parts-cost').value) || 0;
       const labour = Number($('org-labour').value);
       const total = partsCost + labour;
-      const org = $('org-name').value;
+      const org = $('org-name').value === 'Other'
+        ? $('org-name-manual').value.trim()
+        : $('org-name').value;
       const invoice = $('org-invoice').value;
 
       const data = {
@@ -7431,10 +7548,10 @@ function buildPostBody(fnName, args) {
     const togglePayrollFormFields = () => {
       const type = $('payroll-type').value;
       const isSalary = (type === 'Salary');
-      
+
       $('payroll-comm-pct').disabled = isSalary;
       $('payroll-revenue').disabled = isSalary;
-      
+
       if (isSalary) {
         $('payroll-comm-pct').value = '0';
         $('payroll-revenue').value = '0';
@@ -7485,7 +7602,7 @@ function buildPostBody(fnName, args) {
       runScript('addEmployee', data, () => {
         Toast.success('Added employee successfully!');
         syncCollection('payroll', 'payroll-table-spinner');
-        
+
         // Repopulate the mechanic datalist with the new mechanic
         setTimeout(() => {
           rebuildMechanicSelectDropdown();
@@ -7600,6 +7717,7 @@ function buildPostBody(fnName, args) {
 
         form.querySelectorAll('.form-control').forEach(input => {
           if (input.type === 'hidden' || !input.id) return;
+          if (input.id === 'edit-org-name-manual') return;
 
           let val = input.value;
           if (input.type === 'number') val = Number(val) || 0;
@@ -7622,6 +7740,10 @@ function buildPostBody(fnName, args) {
 
           updates[property] = val;
         });
+
+        if (formId === 'edit-org-form' && $('edit-org-name').value === 'Other') {
+          updates.org_name = $('edit-org-name-manual').value.trim();
+        }
 
         // Add calculated dynamic totals in edits
         if (formId === 'edit-spare-form') {
