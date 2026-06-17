@@ -4,8 +4,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0F172A">
   <title>Panadol Garage Business System</title>
   <!-- Google Fonts CDN -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
     href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Syne:wght@700;800&display=swap"
     rel="stylesheet">
@@ -187,17 +190,22 @@
     .sidebar-logo {
       width: 36px;
       height: 36px;
-      background: var(--red);
+      background: #FFF;
       border-radius: 8px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-family: var(--font-syne);
-      font-weight: 800;
-      font-size: 20px;
-      color: #FFF;
       box-shadow: 0 4px 12px rgba(227, 30, 36, 0.5);
       flex-shrink: 0;
+      overflow: hidden;
+      padding: 4px;
+    }
+
+    .brand-logo-img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
     }
 
     .sidebar-brand {
@@ -420,13 +428,38 @@
       gap: 16px;
     }
 
+    .topbar-logo {
+      width: 42px;
+      height: 42px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: #FFF;
+      padding: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
     .btn-menu-toggle {
-      display: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 42px;
+      height: 42px;
       background: transparent;
-      border: none;
+      border: 1px solid var(--border);
+      border-radius: 8px;
       font-size: 24px;
       cursor: pointer;
       color: var(--dark);
+      flex-shrink: 0;
+      transition: background var(--duration-fast) var(--ease-out), border-color var(--duration-fast) var(--ease-out);
+    }
+
+    .btn-menu-toggle:hover {
+      background: var(--bg);
+      border-color: var(--muted);
     }
 
     .page-title-area h1 {
@@ -444,6 +477,7 @@
       display: flex;
       align-items: center;
       gap: 16px;
+      min-width: 0;
     }
 
     .btn-ghost {
@@ -778,6 +812,48 @@
       pointer-events: none;
     }
 
+    #page-dashboard .kpi-card:has(#kpi-all-time-income),
+    #page-dashboard .kpi-card:has(#kpi-inventory-value),
+    #page-dashboard .kpi-card:has(#kpi-payroll-cost) {
+      display: none;
+    }
+
+    #page-dashboard .kpi-card:has(#kpi-today-revenue) {
+      order: 1;
+    }
+
+    #page-dashboard .kpi-card:has(#kpi-monthly-revenue) {
+      order: 2;
+    }
+
+    #page-dashboard .kpi-card:has(#kpi-net-income) {
+      order: 3;
+    }
+
+    #page-dashboard .kpi-card:has(#kpi-parts-profit) {
+      order: 4;
+    }
+
+    #page-dashboard .kpi-card:has(#kpi-monthly-expenses) {
+      order: 5;
+    }
+
+    #page-dashboard .kpi-card:has(#kpi-net-profit) {
+      order: 6;
+    }
+
+    #page-dashboard .kpi-card:has(#kpi-outstanding-debts) {
+      order: 7;
+    }
+
+    #page-dashboard .kpi-card:has(#kpi-active-repairs) {
+      order: 8;
+    }
+
+    #page-dashboard .kpi-card:has(#kpi-low-stock-count) {
+      order: 9;
+    }
+
     .kpi-card-left {
       display: flex;
       flex-direction: column;
@@ -934,6 +1010,97 @@
       background: rgba(239, 68, 68, 0.05);
     }
 
+    .repair-parts-builder {
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      background: var(--bg-subtle);
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .repair-part-row {
+      display: grid;
+      grid-template-columns: minmax(180px, 1.5fr) 90px 130px 120px 120px 40px;
+      gap: 10px;
+      align-items: start;
+    }
+
+    .part-market-hint {
+      min-height: 40px;
+      display: flex;
+      align-items: center;
+      padding: 8px 10px;
+      border: 1px dashed var(--border);
+      border-radius: var(--radius-md);
+      background: var(--surface);
+      color: var(--text-secondary);
+      font-size: 12px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .repair-parts-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      padding-top: 4px;
+    }
+
+    .repair-parts-total {
+      font-family: var(--font-mono);
+      font-weight: 700;
+      color: var(--dark);
+    }
+
+    .repair-cart-summary {
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      background: var(--surface);
+      padding: 14px 16px;
+      display: grid;
+      gap: 8px;
+      max-width: 420px;
+      margin-left: auto;
+    }
+
+    .repair-cart-line {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+
+    .repair-cart-line strong {
+      font-family: var(--font-mono);
+      color: var(--dark);
+    }
+
+    .repair-cart-line.total {
+      border-top: 1px solid var(--border);
+      padding-top: 8px;
+      font-weight: 700;
+      color: var(--dark);
+    }
+
+    @media (max-width: 768px) {
+      .repair-part-row {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .part-market-hint {
+        white-space: normal;
+      }
+
+      .repair-part-row .btn-icon {
+        width: 100%;
+      }
+    }
+
     /* CREDIT TRANSITION AREA */
     .credit-fields {
       display: none;
@@ -966,10 +1133,12 @@
       max-height: 480px;
       border-radius: 8px;
       border: 1px solid var(--border);
+      -webkit-overflow-scrolling: touch;
     }
 
     table {
       width: 100%;
+      min-width: 760px;
       border-collapse: collapse;
       text-align: left;
       font-size: 13px;
@@ -1700,19 +1869,18 @@
     }
 
     .auth-logo {
-      width: 64px;
-      height: 64px;
-      background: var(--red);
-      border-radius: 12px;
+      width: 96px;
+      height: 96px;
+      background: #FFF;
+      border: 1px solid var(--border);
+      border-radius: 14px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-family: var(--font-syne);
-      font-weight: 800;
-      font-size: 32px;
-      color: #FFF;
-      margin-bottom: 16px;
-      box-shadow: 0 6px 16px rgba(227, 30, 36, 0.3);
+      margin: 0 auto 16px;
+      box-shadow: 0 6px 16px rgba(15, 23, 42, 0.12);
+      overflow: hidden;
+      padding: 8px;
     }
 
     .auth-title h2 {
@@ -1872,6 +2040,10 @@
       z-index: 5;
     }
 
+    .sidebar-backdrop {
+      display: none;
+    }
+
     /* RESPONSIVE DESIGN */
     @media (max-width: 1280px) {
       .kpi-grid {
@@ -1883,35 +2055,99 @@
       .sidebar {
         position: fixed;
         transform: translateX(-100%);
-        height: 100%;
+        height: 100dvh;
+        max-width: min(86vw, 300px);
+        z-index: 1000;
+        box-shadow: var(--shadow-xl);
       }
 
       .sidebar.mobile-open {
         transform: translateX(0);
       }
 
-      .btn-menu-toggle {
+      .sidebar.mobile-open + .sidebar-backdrop {
         display: block;
+        position: fixed;
+        inset: 0;
+        background: rgba(15, 23, 42, 0.45);
+        backdrop-filter: blur(2px);
+        z-index: 999;
       }
 
       .main-content {
         margin-left: 0;
       }
 
+      .topbar {
+        padding: 0 20px;
+      }
+
+      .content-area {
+        padding: 22px;
+      }
+
+      .kpi-grid,
+      .kpi-grid[style],
+      .form-grid[style],
+      .dashboard-row {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+      }
+
       .dashboard-row {
         grid-template-columns: 1fr;
+      }
+
+      .card-body {
+        padding: 20px;
       }
     }
 
     @media (max-width: 768px) {
-      .kpi-grid {
-        grid-template-columns: repeat(2, 1fr);
+      .kpi-grid,
+      .kpi-grid[style],
+      .form-grid,
+      .form-grid[style],
+      .dashboard-row {
+        grid-template-columns: 1fr !important;
       }
 
       .top-banner {
         flex-direction: column;
         gap: 10px;
         text-align: center;
+      }
+
+      .topbar {
+        height: auto;
+        min-height: 64px;
+        padding: 10px 14px;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+
+      .topbar-left {
+        width: 100%;
+        min-width: 0;
+        gap: 10px;
+      }
+
+      .topbar-right {
+        width: 100%;
+        justify-content: space-between;
+        gap: 8px;
+      }
+
+      .topbar-logo {
+        width: 36px;
+        height: 36px;
+      }
+
+      .page-title-area h1 {
+        font-size: 18px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: calc(100vw - 132px);
       }
 
       .page-title-area p {
@@ -1922,18 +2158,53 @@
         display: none;
       }
 
+      .btn-ghost,
+      .btn-primary {
+        padding: 8px 10px;
+      }
+
       .org-breakdown-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: 1fr;
+      }
+
+      .card-header,
+      .card-footer,
+      .table-actions-row {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+      }
+
+      .card-title {
+        font-size: 14px;
+      }
+
+      .table-responsive {
+        max-height: none;
       }
     }
 
     @media (max-width: 480px) {
-      .kpi-grid {
-        grid-template-columns: 1fr;
+      .sidebar {
+        width: 82vw;
       }
 
       .topbar {
-        padding: 0 16px;
+        padding: 8px 10px;
+      }
+
+      .topbar-logo {
+        display: none;
+      }
+
+      .page-title-area h1 {
+        max-width: calc(100vw - 72px);
+      }
+
+      .btn-menu-toggle {
+        width: 38px;
+        height: 38px;
+        font-size: 20px;
       }
 
       .user-profile .profile-info {
@@ -1945,7 +2216,19 @@
       }
 
       .content-area {
+        padding: 14px;
+      }
+
+      .card-body {
         padding: 16px;
+      }
+
+      .kpi-card {
+        padding: 16px;
+      }
+
+      .kpi-value {
+        font-size: 20px;
       }
 
       .org-breakdown-grid {
@@ -1977,15 +2260,53 @@
       }
     }
 
+    @media (hover: none) {
+      .card:hover,
+      .kpi-card:hover {
+        transform: none;
+        box-shadow: var(--shadow-sm);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
     .card.no-print {
+      display: none;
+    }
+
+    .print-brand {
+      display: none;
+    }
+
+    .print-watermark {
       display: none;
     }
 
     /* PRINT LAYOUT */
     @media print {
+      @page {
+        size: A4;
+        margin: 12mm;
+      }
+
       body {
         background: #FFF !important;
         color: #000 !important;
+        font-size: 11px !important;
+      }
+
+      #app-container {
+        display: block !important;
+        min-height: auto !important;
       }
 
       .sidebar,
@@ -2004,6 +2325,8 @@
       }
 
       .main-content {
+        display: block !important;
+        width: 100% !important;
         margin-left: 0 !important;
         padding: 0 !important;
       }
@@ -2012,14 +2335,141 @@
         padding: 0 !important;
       }
 
-      .page-view {
+      .print-brand {
+        display: flex !important;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 12px;
+        width: 100%;
+        text-align: left;
+        padding-bottom: 12px;
+        margin-bottom: 16px;
+        border-bottom: 2px solid #000;
+        page-break-after: avoid;
+      }
+
+      .print-brand-mark {
+        width: 72px;
+        height: 72px;
+        border: 2px solid #000;
+        border-radius: 10px;
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        overflow: hidden;
+        position: relative;
+      }
+
+      .print-brand-mark::after {
+        content: 'PG';
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #000;
+        font-family: var(--font-syne);
+        font-size: 24px;
+        font-weight: 800;
+        z-index: 0;
+      }
+
+      .print-brand-logo {
         display: block !important;
+        width: 100%;
+        height: 100%;
+        max-width: none;
+        max-height: none;
+        object-fit: contain;
+        background: #FFF;
+        position: relative;
+        z-index: 1;
+      }
+
+      .print-brand h1 {
+        color: #000 !important;
+        font-size: 22px !important;
+        line-height: 1.1;
+        margin: 0;
+        letter-spacing: 0;
+      }
+
+      .print-brand p {
+        color: #333 !important;
+        font-size: 11px !important;
+        margin: 0;
+      }
+
+      .print-watermark {
+        display: block !important;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        width: 360px;
+        max-width: 62vw;
+        opacity: 0.045;
+        transform: translate(-50%, -50%);
+        z-index: 0;
+        pointer-events: none;
+      }
+
+      .page-view {
+        display: none !important;
+        animation: none !important;
+      }
+
+      .page-view.active {
+        display: block !important;
+        position: relative;
+        z-index: 1;
+      }
+
+      .top-banner {
+        background: transparent !important;
+        color: #000 !important;
+        box-shadow: none !important;
+        border: 1px solid #DDD !important;
+        border-radius: 6px !important;
+        padding: 8px 12px !important;
+        margin-bottom: 10px !important;
+      }
+
+      .top-banner::before,
+      .kpi-card::after,
+      .kpi-icon {
+        display: none !important;
       }
 
       .kpi-grid {
         grid-template-columns: repeat(3, 1fr) !important;
-        gap: 10px !important;
-        margin-bottom: 20px;
+        gap: 8px !important;
+        margin-bottom: 12px;
+      }
+
+      .kpi-card {
+        min-height: auto !important;
+        padding: 12px !important;
+        border-radius: 6px !important;
+        box-shadow: none !important;
+        border-top: 1px solid #DDD !important;
+        border-right: 1px solid #DDD !important;
+        border-bottom: 1px solid #DDD !important;
+        page-break-inside: avoid;
+      }
+
+      .kpi-card-left {
+        gap: 5px !important;
+      }
+
+      .kpi-value {
+        font-size: 18px !important;
+      }
+
+      .kpi-label,
+      .kpi-sub {
+        font-size: 9px !important;
       }
 
       .card {
@@ -2032,7 +2482,9 @@
         border-top: 1px solid #000;
         border-bottom: 1px solid #000;
         width: 100% !important;
-        font-size: 10px !important;
+        font-size: 9px !important;
+        table-layout: fixed;
+        page-break-inside: auto;
       }
 
       thead th {
@@ -2040,10 +2492,13 @@
         color: #000 !important;
         border-bottom: 2px solid #000;
         font-weight: bold;
+        word-break: break-word;
       }
 
       tbody td {
         border-bottom: 1px solid #DDD !important;
+        word-break: break-word;
+        overflow-wrap: anywhere;
       }
 
       tfoot td {
@@ -2068,7 +2523,9 @@
 
     <!-- SETUP FORM -->
     <div class="auth-card" id="setup-card" style="display: none;">
-      <div class="auth-logo">P</div>
+      <div class="auth-logo">
+        <img src="logo/Panadol_Garage_logo.png" alt="Panadol Garage logo" class="brand-logo-img">
+      </div>
       <div class="auth-title">
         <h2>System Setup</h2>
         <p>Create the first owner account to initialize your garage</p>
@@ -2108,7 +2565,9 @@
 
     <!-- SIGN IN FORM -->
     <div class="auth-card" id="login-card" style="display: none;">
-      <div class="auth-logo">P</div>
+      <div class="auth-logo">
+        <img src="logo/Panadol_Garage_logo.png" alt="Panadol Garage logo" class="brand-logo-img">
+      </div>
       <div class="auth-title">
         <h2>PANADOL GARAGE</h2>
         <p>Mechanic Silhouette & Bold Wrench Systems</p>
@@ -2136,7 +2595,9 @@
 
     <!-- SIGN UP FORM -->
     <div class="auth-card" id="signup-card" style="display: none;">
-      <div class="auth-logo">P</div>
+      <div class="auth-logo">
+        <img src="logo/Panadol_Garage_logo.png" alt="Panadol Garage logo" class="brand-logo-img">
+      </div>
       <div class="auth-title">
         <h2>Create Account</h2>
         <p>Register a new system cashier or owner</p>
@@ -2189,11 +2650,23 @@
 
   <!-- APPLICATION WORKSPACE -->
   <div id="app-container" style="display: none;">
+    <div class="print-brand">
+      <div class="print-brand-mark">
+        <img src="logo/Panadol_Garage_logo.png" alt="Panadol Garage logo" class="print-brand-logo" onerror="this.style.display='none'">
+      </div>
+      <div>
+        <h1>PANADOL GARAGE</h1>
+        <p id="print-view-title">Dashboard</p>
+      </div>
+    </div>
+    <img src="logo/Panadol_Garage_logo.png" alt="" class="print-watermark" aria-hidden="true">
 
     <!-- SIDEBAR -->
     <aside class="sidebar" id="app-sidebar">
       <div class="sidebar-header">
-        <div class="sidebar-logo">P</div>
+        <div class="sidebar-logo">
+          <img src="logo/Panadol_Garage_logo.png" alt="Panadol Garage logo" class="brand-logo-img">
+        </div>
         <div class="sidebar-brand">
           <h2>PANADOL GARAGE</h2>
           <p>System Workspace</p>
@@ -2241,6 +2714,7 @@
         <button class="btn-logout" id="btn-logout-trigger"><span class="nav-icon">🚪</span>Sign Out</button>
       </div>
     </aside>
+    <div class="sidebar-backdrop" id="sidebar-backdrop" aria-hidden="true"></div>
 
     <!-- MAIN BODY -->
     <div class="main-content">
@@ -2249,6 +2723,9 @@
       <header class="topbar">
         <div class="topbar-left">
           <button class="btn-menu-toggle" id="btn-sidebar-toggle" aria-label="Toggle Sidebar">☰</button>
+          <div class="topbar-logo">
+            <img src="logo/Panadol_Garage_logo.png" alt="Panadol Garage logo" class="brand-logo-img">
+          </div>
           <div class="page-title-area">
             <h1 id="view-title">Dashboard</h1>
             <p id="view-subtitle" class="no-print">Panadol Garage central operational hub</p>
@@ -2321,6 +2798,15 @@
               </div>
               <span class="kpi-icon">🪙</span>
             </div>
+            <!-- 2b. All Time Income -->
+            <div class="kpi-card" style="border-left: 4px solid var(--info);">
+              <div class="kpi-card-left">
+                <span class="kpi-label">All Time Income</span>
+                <span class="kpi-value" id="kpi-all-time-income">KES 0</span>
+                <span class="kpi-sub" id="sub-all-time-income">Loading...</span>
+              </div>
+              <span class="kpi-icon">KES</span>
+            </div>
             <!-- 3. Outstanding Debts -->
             <div class="kpi-card" style="border-left: 4px solid var(--danger);">
               <div class="kpi-card-left">
@@ -2333,7 +2819,7 @@
             <!-- 4. Active Repairs -->
             <div class="kpi-card" style="border-left: 4px solid var(--info);">
               <div class="kpi-card-left">
-                <span class="kpi-label">Active Repairs</span>
+                <span class="kpi-label">Today's Repairs</span>
                 <span class="kpi-value" id="kpi-active-repairs">0</span>
                 <span class="kpi-sub" id="sub-active-repairs">Loading...</span>
               </div>
@@ -2349,6 +2835,16 @@
               <span class="kpi-icon">⚙️</span>
             </div>
             <!-- 6. Monthly Expenses -->
+            <!-- 5b. Spare Parts Profit -->
+            <div class="kpi-card" style="border-left: 4px solid var(--success);">
+              <div class="kpi-card-left">
+                <span class="kpi-label">Spare Parts Profit</span>
+                <span class="kpi-value" id="kpi-parts-profit">KES 0</span>
+                <span class="kpi-sub" id="sub-parts-profit">Loading...</span>
+              </div>
+              <span class="kpi-icon">KES</span>
+            </div>
+            <!-- 6. Monthly Expenses -->
             <div class="kpi-card" style="border-left: 4px solid var(--warning);">
               <div class="kpi-card-left">
                 <span class="kpi-label">Monthly Expenses</span>
@@ -2356,6 +2852,15 @@
                 <span class="kpi-sub" id="sub-monthly-expenses">Loading...</span>
               </div>
               <span class="kpi-icon">📈</span>
+            </div>
+            <!-- 6b. Net Income -->
+            <div class="kpi-card" style="border-left: 4px solid var(--success);">
+              <div class="kpi-card-left">
+                <span class="kpi-label">Net Income</span>
+                <span class="kpi-value" id="kpi-net-income">KES 0</span>
+                <span class="kpi-sub" id="sub-net-income">Loading...</span>
+              </div>
+              <span class="kpi-icon">KES</span>
             </div>
             <!-- 7. Net Profit -->
             <div class="kpi-card" style="border-left: 4px solid var(--success);">
@@ -2595,7 +3100,15 @@
                     <span class="form-error"></span>
                   </div>
                   <div class="form-group">
-                    <label for="sale-price">Unit Price (KES) <span class="req">*</span></label>
+                    <label for="sale-buying-price">Buying Price (KES)</label>
+                    <input type="number" id="sale-buying-price" class="form-control" min="0" step="any" readonly>
+                  </div>
+                  <div class="form-group">
+                    <label for="sale-market-price">Market Price (KES)</label>
+                    <input type="number" id="sale-market-price" class="form-control" min="0" step="any" readonly>
+                  </div>
+                  <div class="form-group">
+                    <label for="sale-price">Sell Price After Discount (KES) <span class="req">*</span></label>
                     <input type="number" id="sale-price" class="form-control" min="0.01" step="any" required>
                     <span class="form-error"></span>
                   </div>
@@ -2621,15 +3134,15 @@
                     <input type="text" id="sale-customer" class="form-control" placeholder="E.g., John Kamau">
                     <span class="form-error"></span>
                   </div>
+                  <div class="form-group">
+                    <label for="sale-phone">Customer Phone (Kenya: 07XXXXXXXX)</label>
+                    <input type="text" id="sale-phone" class="form-control" placeholder="E.g., 0712345678">
+                    <span class="form-error"></span>
+                  </div>
                 </div>
 
                 <!-- Reveal on Credit -->
                 <div class="credit-fields" id="sale-credit-group">
-                  <div class="form-group">
-                    <label for="sale-phone">Customer Phone (Kenya: 07XXXXXXXX) <span class="req">*</span></label>
-                    <input type="text" id="sale-phone" class="form-control" placeholder="E.g., 0712345678">
-                    <span class="form-error"></span>
-                  </div>
                   <div class="form-group">
                     <label for="sale-due-date">Due Date <span class="req">*</span></label>
                     <input type="date" id="sale-due-date" class="form-control">
@@ -2713,8 +3226,11 @@
                       <th scope="col">Invoice No.</th>
                       <th scope="col">Part Sold</th>
                       <th scope="col">Qty</th>
-                      <th scope="col">Unit Price</th>
+                      <th scope="col">Buying</th>
+                      <th scope="col">Market</th>
+                      <th scope="col">Sell Price</th>
                       <th scope="col">Total Bill</th>
+                      <th scope="col">Profit</th>
                       <th scope="col">Payment</th>
                       <th scope="col">Customer</th>
                       <th scope="col" class="no-print">Actions</th>
@@ -2722,15 +3238,16 @@
                   </thead>
                   <tbody id="spare-parts-tbody">
                     <tr>
-                      <td colspan="9" style="text-align: center; color: var(--muted); font-style: italic;">No sales
+                      <td colspan="12" style="text-align: center; color: var(--muted); font-style: italic;">No sales
                         history logged</td>
                     </tr>
                   </tbody>
                   <tfoot>
                     <tr>
-                      <td colspan="5" style="text-align: right; font-weight: bold;">Filtered Total:</td>
+                      <td colspan="7" style="text-align: right; font-weight: bold;">Filtered Total:</td>
                       <td id="spare-table-foot-total" style="font-family: var(--font-mono); font-weight: bold;">KES 0
                       </td>
+                      <td id="spare-table-foot-profit" style="font-family: var(--font-mono); font-weight: bold; color: var(--success);">KES 0</td>
                       <td colspan="3"></td>
                     </tr>
                   </tfoot>
@@ -2764,14 +3281,14 @@
                     <span class="form-error"></span>
                   </div>
                   <div class="form-group">
-                    <label for="repair-customer">Customer Name <span class="req">*</span></label>
+                    <label for="repair-customer">Customer Name</label>
                     <input type="text" id="repair-customer" class="form-control" placeholder="E.g., Moses Njoroge"
-                      required>
+                      >
                     <span class="form-error"></span>
                   </div>
                   <div class="form-group">
-                    <label for="repair-phone">Customer Phone (Kenya: 07XXXXXXXX) <span class="req">*</span></label>
-                    <input type="text" id="repair-phone" class="form-control" placeholder="E.g., 0722000000" required>
+                    <label for="repair-phone">Customer Phone (Kenya: 07XXXXXXXX)</label>
+                    <input type="text" id="repair-phone" class="form-control" placeholder="E.g., 0722000000">
                     <span class="form-error"></span>
                   </div>
                   <div class="form-group">
@@ -2796,10 +3313,16 @@
                     <input type="text" id="repair-mechanic" class="form-control" list="mechanic-list"
                       placeholder="Choose or type name">
                   </div>
-                  <div class="form-group">
-                    <label for="repair-parts">Parts Used (Text description)</label>
-                    <input type="text" id="repair-parts" class="form-control"
-                      placeholder="E.g., Spark plug, Front brake shoe">
+                  <div class="form-group span-full">
+                    <label>Parts Used From Inventory</label>
+                    <input type="hidden" id="repair-parts" class="form-control">
+                    <div class="repair-parts-builder">
+                      <div id="repair-parts-lines"></div>
+                      <div class="repair-parts-footer">
+                        <button type="button" class="btn-ghost" id="btn-add-repair-part" style="font-size: 12px; padding: 6px 12px;">+ Add Part</button>
+                        <span class="repair-parts-total">Parts Total: <span id="repair-parts-total">KES 0</span></span>
+                      </div>
+                    </div>
                   </div>
                   <div class="form-group">
                     <label for="repair-fee">Labour Fee (KES) <span class="req">*</span></label>
@@ -2815,6 +3338,22 @@
                       <option value="Credit">Credit (Owe Balance)</option>
                     </select>
                     <span class="form-error"></span>
+                  </div>
+                  <div class="form-group span-full">
+                    <div class="repair-cart-summary" aria-live="polite">
+                      <div class="repair-cart-line">
+                        <span>Spare Parts</span>
+                        <strong id="repair-cart-parts-total">KES 0</strong>
+                      </div>
+                      <div class="repair-cart-line">
+                        <span>Service Fee</span>
+                        <strong id="repair-cart-service-fee">KES 0</strong>
+                      </div>
+                      <div class="repair-cart-line total">
+                        <span>Cart Total</span>
+                        <strong id="repair-cart-grand-total">KES 0</strong>
+                      </div>
+                    </div>
                   </div>
                 </div>
 
@@ -2879,6 +3418,7 @@
                       <th scope="col">Phone</th>
                       <th scope="col">Model</th>
                       <th scope="col">Mechanic</th>
+                      <th scope="col">Parts Used</th>
                       <th scope="col">Labour (KES)</th>
                       <th scope="col">Payment</th>
                       <th scope="col">Status</th>
@@ -2887,7 +3427,7 @@
                   </thead>
                   <tbody id="repairs-tbody">
                     <tr>
-                      <td colspan="10" style="text-align: center; color: var(--muted); font-style: italic;">No repair
+                      <td colspan="11" style="text-align: center; color: var(--muted); font-style: italic;">No repair
                         tickets opened</td>
                     </tr>
                   </tbody>
@@ -2956,14 +3496,20 @@
                     <input type="text" id="org-invoice" class="form-control" required>
                     <span class="form-error"></span>
                   </div>
-                  <div class="form-group">
-                    <label for="org-parts">Spare Parts Used</label>
-                    <input type="text" id="org-parts" class="form-control"
-                      placeholder="E.g., 5 Spar plugs, 3 Chain kits">
+                  <div class="form-group span-full">
+                    <label>Parts Used From Inventory</label>
+                    <input type="hidden" id="org-parts" class="form-control">
+                    <div class="repair-parts-builder">
+                      <div id="org-parts-lines"></div>
+                      <div class="repair-parts-footer">
+                        <button type="button" class="btn-ghost" id="btn-add-org-part" style="font-size: 12px; padding: 6px 12px;">+ Add Part</button>
+                        <span class="repair-parts-total">Parts Total: <span id="org-parts-total">KES 0</span></span>
+                      </div>
+                    </div>
                   </div>
                   <div class="form-group">
                     <label for="org-parts-cost">Spare Parts Cost (KES) <span class="req">*</span></label>
-                    <input type="number" id="org-parts-cost" class="form-control" min="0" step="any" value="0" required>
+                    <input type="number" id="org-parts-cost" class="form-control" min="0" step="any" value="0" required readonly>
                     <span class="form-error"></span>
                   </div>
                   <div class="form-group">
@@ -3258,11 +3804,9 @@
                       <option value="Rent">Rent & Utilities</option>
                       <option value="Spare Parts Purchase">Spare Parts Purchase (Restock)</option>
                       <option value="Tools">Garage Tools & Machinery</option>
-                      <option value="Mechanic Payout">Mechanic Commission / Payout</option>
-                      <option value="Salaries">Office Salaries</option>
+                      <option value="Salary">Salary</option>
                       <option value="Water/Electricity">Electricity & Water Bill</option>
                       <option value="Marketing">Marketing / Branding</option>
-                      <option value="Miscellaneous">Miscellaneous Overhead</option>
                     </select>
                     <span class="form-error"></span>
                   </div>
@@ -3533,7 +4077,12 @@
                       placeholder="E.g., Engine, Transmission, Electrical">
                   </div>
                   <div class="form-group">
-                    <label for="inv-price">Selling Unit Price (KES) <span class="req">*</span></label>
+                    <label for="inv-buying-price">Buying Price (KES) <span class="req">*</span></label>
+                    <input type="number" id="inv-buying-price" class="form-control" min="0" step="any" required>
+                    <span class="form-error"></span>
+                  </div>
+                  <div class="form-group">
+                    <label for="inv-price">Market Price (KES) <span class="req">*</span></label>
                     <input type="number" id="inv-price" class="form-control" min="0.01" step="any" required>
                     <span class="form-error"></span>
                   </div>
@@ -3611,7 +4160,8 @@
                     <tr>
                       <th scope="col" style="width: 30%;">Part + Stock Level</th>
                       <th scope="col">Category</th>
-                      <th scope="col">Unit Price</th>
+                      <th scope="col">Buying Price</th>
+                      <th scope="col">Market Price</th>
                       <th scope="col">Opening</th>
                       <th scope="col">Added</th>
                       <th scope="col">Sold</th>
@@ -3622,7 +4172,7 @@
                   </thead>
                   <tbody id="inventory-tbody">
                     <tr>
-                      <td colspan="9" style="text-align: center; color: var(--muted); font-style: italic;">No inventory
+                      <td colspan="10" style="text-align: center; color: var(--muted); font-style: italic;">No inventory
                         items registered</td>
                     </tr>
                   </tbody>
@@ -4004,7 +4554,17 @@
           </div>
           <div class="form-grid" style="grid-template-columns: repeat(2, 1fr);">
             <div class="form-group">
-              <label for="edit-spare-price">Price (KES) <span class="req">*</span></label>
+              <label for="edit-spare-buying-price">Buying Price (KES)</label>
+              <input type="number" id="edit-spare-buying-price" class="form-control" min="0" step="any">
+            </div>
+            <div class="form-group">
+              <label for="edit-spare-market-price">Market Price (KES)</label>
+              <input type="number" id="edit-spare-market-price" class="form-control" min="0" step="any">
+            </div>
+          </div>
+          <div class="form-grid" style="grid-template-columns: repeat(2, 1fr);">
+            <div class="form-group">
+              <label for="edit-spare-price">Sell Price After Discount (KES) <span class="req">*</span></label>
               <input type="number" id="edit-spare-price" class="form-control" min="0.01" step="any" required>
               <span class="form-error"></span>
             </div>
@@ -4059,13 +4619,13 @@
           </div>
           <div class="form-grid" style="grid-template-columns: repeat(2, 1fr);">
             <div class="form-group">
-              <label for="edit-repair-customer">Customer <span class="req">*</span></label>
-              <input type="text" id="edit-repair-customer" class="form-control" required>
+              <label for="edit-repair-customer">Customer</label>
+              <input type="text" id="edit-repair-customer" class="form-control">
               <span class="form-error"></span>
             </div>
             <div class="form-group">
-              <label for="edit-repair-phone">Phone <span class="req">*</span></label>
-              <input type="text" id="edit-repair-phone" class="form-control" required>
+              <label for="edit-repair-phone">Phone</label>
+              <input type="text" id="edit-repair-phone" class="form-control">
               <span class="form-error"></span>
             </div>
           </div>
@@ -4104,6 +4664,8 @@
                 <option value="M-Pesa">M-Pesa</option>
                 <option value="Bank Transfer">Bank Transfer</option>
                 <option value="Credit">Credit</option>
+                <option value="Partial">Partial</option>
+                <option value="Paid">Paid</option>
               </select>
               <span class="form-error"></span>
             </div>
@@ -4337,11 +4899,9 @@
                 <option value="Rent">Rent & Utilities</option>
                 <option value="Spare Parts Purchase">Spare Parts Purchase</option>
                 <option value="Tools">Garage Tools</option>
-                <option value="Mechanic Payout">Mechanic Commission</option>
-                <option value="Salaries">Office Salaries</option>
+                <option value="Salary">Salary</option>
                 <option value="Water/Electricity">Electricity & Water</option>
                 <option value="Marketing">Marketing</option>
-                <option value="Miscellaneous">Miscellaneous</option>
               </select>
               <span class="form-error"></span>
             </div>
@@ -4406,9 +4966,14 @@
               <input type="text" id="edit-inv-category" class="form-control">
             </div>
           </div>
-          <div class="form-grid" style="grid-template-columns: 1fr;">
+          <div class="form-grid" style="grid-template-columns: repeat(2, 1fr);">
             <div class="form-group">
-              <label for="edit-inv-price">Selling Unit Price (KES) <span class="req">*</span></label>
+              <label for="edit-inv-buying-price">Buying Price (KES) <span class="req">*</span></label>
+              <input type="number" id="edit-inv-buying-price" class="form-control" required>
+              <span class="form-error"></span>
+            </div>
+            <div class="form-group">
+              <label for="edit-inv-price">Market Price (KES) <span class="req">*</span></label>
               <input type="number" id="edit-inv-price" class="form-control" required>
               <span class="form-error"></span>
             </div>
@@ -4667,7 +5232,8 @@
     const APP = {
       currentPage: 'page-dashboard',
       changedPayrollIds: new Set(),
-      activeCustomerId: null
+      activeCustomerId: null,
+      expensesPayrollRefreshing: false
     };
 
     // DOM ELEMENTS SHORTCUT
@@ -4688,6 +5254,271 @@
       const num = Number(amount) || 0;
       const formatted = num.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
       return showPrefix ? `KES ${formatted}` : formatted;
+    }
+
+    function calculateEmployeePay(emp) {
+      const base = Number(emp?.base) || 0;
+      const commPct = Number(emp?.comm_pct) || 0;
+      const revenue = Number(emp?.revenue) || 0;
+      const commission = emp?.type === 'Commission' ? (revenue * commPct / 100) : 0;
+      return base + commission;
+    }
+
+    function calculatePayrollTotal() {
+      return DB.payroll.reduce((sum, emp) => sum + calculateEmployeePay(emp), 0);
+    }
+
+    function firstNumericValue(...values) {
+      for (const value of values) {
+        if (value === null || value === undefined || value === '') continue;
+        const num = Number(value);
+        if (Number.isFinite(num)) return num;
+      }
+      return 0;
+    }
+
+    function getInventoryBuyingPrice(item) {
+      return firstNumericValue(
+        item?.buying_price,
+        item?.buyingPrice,
+        item?.cost_price,
+        item?.costPrice,
+        item?.purchase_price,
+        item?.purchasePrice,
+        item?.cost
+      );
+    }
+
+    function getInventoryMarketPrice(item) {
+      return firstNumericValue(
+        item?.market_price,
+        item?.marketPrice,
+        item?.selling_price,
+        item?.sellingPrice,
+        item?.price
+      );
+    }
+
+    function findInventoryItemByName(name) {
+      return DB.inventory.find(i => String(i.name).trim().toLowerCase() === String(name).trim().toLowerCase());
+    }
+
+    function getSaleBuyingPrice(sale) {
+      const savedBuyingPrice = firstNumericValue(sale?.buying_price, sale?.buyingPrice);
+      if (savedBuyingPrice) return savedBuyingPrice;
+      const item = findInventoryItemByName(sale?.part);
+      return item ? getInventoryBuyingPrice(item) : 0;
+    }
+
+    function getSaleMarketPrice(sale) {
+      const savedMarketPrice = firstNumericValue(sale?.market_price, sale?.marketPrice);
+      if (savedMarketPrice) return savedMarketPrice;
+      const item = findInventoryItemByName(sale?.part);
+      return item ? getInventoryMarketPrice(item) : firstNumericValue(sale?.price);
+    }
+
+    function getSaleSellPrice(sale) {
+      return firstNumericValue(sale?.sell_price, sale?.sellPrice, sale?.price);
+    }
+
+    function calculateSparePartUnitProfit(sale) {
+      return getSaleSellPrice(sale) - getSaleBuyingPrice(sale);
+    }
+
+    function calculateSparePartProfit(sale) {
+      const qty = Number(sale?.qty) || 0;
+      return calculateSparePartUnitProfit(sale) * qty;
+    }
+
+    function getOrgJobServiceFee(job) {
+      return Number(job?.labour) || 0;
+    }
+
+    function getOrgJobLinkedPartsSalesTotal(job) {
+      const invoice = String(job?.invoice || '').trim();
+      if (!invoice) return 0;
+      const prefix = `${invoice}-ORG-PART-`;
+      return DB.spareParts
+        .filter(p => String(p.invoice || '').startsWith(prefix))
+        .reduce((sum, p) => sum + (Number(p.total) || 0), 0);
+    }
+
+    function getOrgJobBillPartsTotal(job) {
+      const linkedPartsTotal = getOrgJobLinkedPartsSalesTotal(job);
+      if (linkedPartsTotal > 0) return linkedPartsTotal;
+      return Number(job?.parts_cost) || 0;
+    }
+
+    function calculateOrgJobTotalBill(job) {
+      return getOrgJobBillPartsTotal(job) + getOrgJobServiceFee(job);
+    }
+
+    function calculateOrgServicesFee(jobs = DB.orgJobs) {
+      return jobs.reduce((sum, job) => sum + getOrgJobServiceFee(job), 0);
+    }
+
+    function computePartsTotal() {
+      const qty = Number($('sale-qty')?.value) || 0;
+      const price = Number($('sale-price')?.value) || 0;
+      const totalField = $('sale-total');
+      if (totalField) totalField.value = (qty * price).toFixed(2);
+    }
+
+    function runScriptPromise(fnName, args) {
+      return new Promise((resolve, reject) => {
+        runScript(fnName, args, resolve, reject);
+      });
+    }
+
+    function setRequiredField(fieldId, required) {
+      const field = $(fieldId);
+      if (!field) return;
+      field.required = required;
+      if (!required) Validator.clearError(field);
+    }
+
+    function getInventoryStock(item) {
+      return (Number(item?.opening) || 0) + (Number(item?.added) || 0) - (Number(item?.sold) || 0);
+    }
+
+    function createInventoryPartOption(item) {
+      const currentStock = getInventoryStock(item);
+      const option = document.createElement('option');
+      option.value = item.name;
+      option.textContent = currentStock <= 0 ? `${item.name} (OUT OF STOCK)` : `${item.name} (In Stock: ${currentStock})`;
+      option.setAttribute('data-buying-price', getInventoryBuyingPrice(item));
+      option.setAttribute('data-market-price', getInventoryMarketPrice(item));
+      option.setAttribute('data-price', getInventoryMarketPrice(item));
+      if (currentStock <= 0) option.disabled = true;
+      return option;
+    }
+
+    function populateInventorySelect(select) {
+      if (!select) return;
+      select.innerHTML = '<option value="">-- Choose Stock Item --</option>';
+      DB.inventory.forEach(item => select.appendChild(createInventoryPartOption(item)));
+    }
+
+    function calculateRepairPartsTotal() {
+      return collectRepairPartItems().reduce((sum, item) => sum + item.total, 0);
+    }
+
+    function syncRepairCartSummary() {
+      const partsTotal = calculateRepairPartsTotal();
+      const serviceFee = Number($('repair-fee')?.value) || 0;
+      const grandTotal = partsTotal + serviceFee;
+      if ($('repair-cart-parts-total')) $('repair-cart-parts-total').textContent = formatCurrency(partsTotal);
+      if ($('repair-cart-service-fee')) $('repair-cart-service-fee').textContent = formatCurrency(serviceFee);
+      if ($('repair-cart-grand-total')) $('repair-cart-grand-total').textContent = formatCurrency(grandTotal);
+    }
+
+    function formatRepairPartsSummary(items) {
+      return items.map(item => `${item.part} x${item.qty} @ ${formatCurrency(item.sell_price)}`).join('; ');
+    }
+
+    function syncRepairPartsHiddenField() {
+      const items = collectRepairPartItems();
+      const hidden = $('repair-parts');
+      if (hidden) hidden.value = formatRepairPartsSummary(items);
+      const total = $('repair-parts-total');
+      if (total) total.textContent = formatCurrency(items.reduce((sum, item) => sum + item.total, 0));
+      syncRepairCartSummary();
+    }
+
+    function collectRepairPartItems() {
+      const container = $('repair-parts-lines');
+      if (!container) return [];
+      return Array.from(container.querySelectorAll('.repair-part-row'))
+        .map((row) => {
+          const part = row.querySelector('.repair-part-select')?.value || '';
+          const inventoryItem = findInventoryItemByName(part);
+          const qty = Number(row.querySelector('.repair-part-qty')?.value) || 0;
+          const buyingPrice = inventoryItem ? getInventoryBuyingPrice(inventoryItem) : 0;
+          const marketPrice = inventoryItem ? getInventoryMarketPrice(inventoryItem) : 0;
+          const sellPrice = Number(row.querySelector('.repair-part-price')?.value) || 0;
+          return {
+            part,
+            qty,
+            buying_price: buyingPrice,
+            market_price: marketPrice,
+            sell_price: sellPrice,
+            price: sellPrice,
+            total: qty * sellPrice,
+            profit: (sellPrice - buyingPrice) * qty
+          };
+        })
+        .filter(item => item.part && item.qty > 0 && item.sell_price > 0);
+    }
+
+    function hasIncompleteRepairPartRows() {
+      const container = $('repair-parts-lines');
+      if (!container) return false;
+      return Array.from(container.querySelectorAll('.repair-part-row')).some(row => {
+        const part = row.querySelector('.repair-part-select')?.value || '';
+        const qty = Number(row.querySelector('.repair-part-qty')?.value) || 0;
+        const price = Number(row.querySelector('.repair-part-price')?.value) || 0;
+        return Boolean(part || qty || price) && !(part && qty > 0 && price > 0);
+      });
+    }
+
+    function getSelectedOrganisationName() {
+      if ($('org-name')?.value === 'Other') return $('org-name-manual')?.value.trim() || 'Manual Organisation';
+      return $('org-name')?.value || '-';
+    }
+
+    function calculateOrgPartsTotal() {
+      return collectOrgPartItems().reduce((sum, item) => sum + item.total, 0);
+    }
+
+    function formatOrgPartsSummary(items) {
+      return items.map(item => `${item.part} x${item.qty} @ ${formatCurrency(item.sell_price)}`).join('; ');
+    }
+
+    function syncOrgCartSummary() {
+      const items = collectOrgPartItems();
+      const partsTotal = items.reduce((sum, item) => sum + item.total, 0);
+      const labour = Number($('org-labour')?.value) || 0;
+      const grandTotal = partsTotal + labour;
+      if ($('org-parts')) $('org-parts').value = formatOrgPartsSummary(items);
+      if ($('org-parts-cost')) $('org-parts-cost').value = partsTotal.toFixed(2);
+      if ($('org-parts-total')) $('org-parts-total').textContent = formatCurrency(partsTotal);
+      if ($('org-bill-total-display')) $('org-bill-total-display').value = grandTotal.toFixed(2);
+    }
+
+    function collectOrgPartItems() {
+      const container = $('org-parts-lines');
+      if (!container) return [];
+      return Array.from(container.querySelectorAll('.org-part-row'))
+        .map((row) => {
+          const part = row.querySelector('.org-part-select')?.value || '';
+          const inventoryItem = findInventoryItemByName(part);
+          const qty = Number(row.querySelector('.org-part-qty')?.value) || 0;
+          const buyingPrice = inventoryItem ? getInventoryBuyingPrice(inventoryItem) : 0;
+          const marketPrice = inventoryItem ? getInventoryMarketPrice(inventoryItem) : 0;
+          const sellPrice = Number(row.querySelector('.org-part-price')?.value) || 0;
+          return {
+            part,
+            qty,
+            buying_price: buyingPrice,
+            market_price: marketPrice,
+            sell_price: sellPrice,
+            price: sellPrice,
+            total: qty * sellPrice,
+            profit: (sellPrice - buyingPrice) * qty
+          };
+        })
+        .filter(item => item.part && item.qty > 0 && item.sell_price > 0);
+    }
+
+    function hasIncompleteOrgPartRows() {
+      const container = $('org-parts-lines');
+      if (!container) return false;
+      return Array.from(container.querySelectorAll('.org-part-row')).some(row => {
+        const part = row.querySelector('.org-part-select')?.value || '';
+        const qty = Number(row.querySelector('.org-part-qty')?.value) || 0;
+        const price = Number(row.querySelector('.org-part-price')?.value) || 0;
+        return Boolean(part || qty || price) && !(part && qty > 0 && price > 0);
+      });
     }
 
     // Debounce for search inputs
@@ -4794,7 +5625,7 @@
 
     // CLIENT WRAPPER FOR GOOGLE APPS SCRIPT
     // ── APPS SCRIPT API URL ──────────────────────────────
-    const GAS_URL = 'https://script.google.com/macros/s/AKfycbwfk14F_EWY2l8PdOB49icc8zzZVz3w8CK01UcXFMxDLKE6HkzH7b62nibrlkj70rzv/exec';
+    const GAS_URL = 'https://script.google.com/macros/s/AKfycbwr1c5tbQc7Egx9YpsarQ4y8UoWAURM9KmLN7M1Rx5Eb6gfE9LOfES7rjwKHm-j-BjJxg/exec';
 
     // ── FETCH-BASED SCRIPT RUNNER (replaces google.script.run) ──
     async function runScript(fnName, args, onSuccess, onError) {
@@ -5114,34 +5945,42 @@
           const target = item.getAttribute('data-page');
           switchPage(target);
           if (window.innerWidth <= 1024) {
-            $('app-sidebar').classList.remove('mobile-open');
+            closeMobileSidebar();
           }
         });
       });
 
       // Print controller
-      $('btn-print-screen').addEventListener('click', () => window.print());
+      const defaultDocumentTitle = document.title;
+      const syncPrintHeader = () => {
+        const printTitle = $('print-view-title');
+        const currentTitle = $('view-title').textContent || 'Dashboard';
+        if (printTitle) printTitle.textContent = currentTitle;
+        document.title = `PANADOL GARAGE - ${currentTitle}`;
+      };
+      $('btn-print-screen').addEventListener('click', () => {
+        syncPrintHeader();
+        window.print();
+      });
+      window.addEventListener('beforeprint', syncPrintHeader);
+      window.addEventListener('afterprint', () => {
+        document.title = defaultDocumentTitle;
+      });
 
       // Auto update dynamic total on spare parts sale
-      const computePartsTotal = () => {
-        const qty = Number($('sale-qty').value) || 0;
-        const price = Number($('sale-price').value) || 0;
-        $('sale-total').value = (qty * price).toFixed(2);
-      };
       $('sale-qty').addEventListener('input', computePartsTotal);
       $('sale-price').addEventListener('input', computePartsTotal);
+      $('repair-fee').addEventListener('input', syncRepairCartSummary);
+      $('btn-add-repair-part').addEventListener('click', () => addRepairPartRow());
 
       // Auto total on Organisation Jobs
-      const computeOrgTotal = () => {
-        const parts = Number($('org-parts-cost').value) || 0;
-        const labour = Number($('org-labour').value) || 0;
-        $('org-bill-total-display').value = (parts + labour).toFixed(2);
-      };
-      $('org-parts-cost').addEventListener('input', computeOrgTotal);
-      $('org-labour').addEventListener('input', computeOrgTotal);
+      $('org-labour').addEventListener('input', syncOrgCartSummary);
+      $('btn-add-org-part').addEventListener('click', () => addOrgPartRow());
+      $('org-name-manual').addEventListener('input', syncOrgCartSummary);
 
       $('org-name').addEventListener('change', () => {
         toggleManualOrgName('org-name', 'org-name-manual-group', 'org-name-manual');
+        syncOrgCartSummary();
       });
 
       $('edit-org-name').addEventListener('change', () => {
@@ -5149,20 +5988,42 @@
       });
 
       // Sidebar Toggle (Desktop Collapse / Mobile Drawer)
-      $('btn-sidebar-toggle').addEventListener('click', () => {
-        if (window.innerWidth <= 1024) {
-          $('app-sidebar').classList.remove('collapsed');
-          $('app-sidebar').classList.toggle('mobile-open');
+      const sidebar = $('app-sidebar');
+      const sidebarToggle = $('btn-sidebar-toggle');
+      const sidebarBackdrop = $('sidebar-backdrop');
+      const isMobileSidebar = () => window.innerWidth <= 1024;
+      const closeMobileSidebar = () => {
+        sidebar.classList.remove('mobile-open');
+        sidebarToggle.setAttribute('aria-expanded', 'false');
+      };
+      sidebarToggle.setAttribute('aria-expanded', 'false');
+      sidebarToggle.addEventListener('click', () => {
+        if (isMobileSidebar()) {
+          sidebar.classList.remove('collapsed');
+          sidebar.classList.toggle('mobile-open');
+          sidebarToggle.setAttribute('aria-expanded', sidebar.classList.contains('mobile-open') ? 'true' : 'false');
         } else {
-          $('app-sidebar').classList.remove('mobile-open');
-          $('app-sidebar').classList.toggle('collapsed');
+          sidebar.classList.remove('mobile-open');
+          sidebar.classList.toggle('collapsed');
+          sidebarToggle.setAttribute('aria-expanded', sidebar.classList.contains('collapsed') ? 'false' : 'true');
         }
+      });
+      sidebarBackdrop.addEventListener('click', closeMobileSidebar);
+      window.addEventListener('resize', () => {
+        if (!isMobileSidebar()) closeMobileSidebar();
+      });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeMobileSidebar();
       });
 
       // Credit fields toggling SPA listeners
       $('sale-payment').addEventListener('change', e => {
-        $('sale-credit-group').style.display = e.target.value === 'Credit' ? 'grid' : 'none';
-        if (e.target.value === 'Credit') {
+        const isCredit = e.target.value === 'Credit';
+        $('sale-credit-group').style.display = isCredit ? 'grid' : 'none';
+        setRequiredField('sale-customer', isCredit);
+        setRequiredField('sale-phone', isCredit);
+        setRequiredField('sale-due-date', isCredit);
+        if (isCredit) {
           // Auto set standard due date (30 days from now)
           const due = new Date();
           due.setDate(due.getDate() + 30);
@@ -5171,8 +6032,12 @@
       });
 
       $('repair-payment').addEventListener('change', e => {
-        $('repair-credit-group').style.display = e.target.value === 'Credit' ? 'grid' : 'none';
-        if (e.target.value === 'Credit') {
+        const isCredit = e.target.value === 'Credit';
+        $('repair-credit-group').style.display = isCredit ? 'grid' : 'none';
+        setRequiredField('repair-customer', isCredit);
+        setRequiredField('repair-phone', isCredit);
+        setRequiredField('repair-due-date', isCredit);
+        if (isCredit) {
           const due = new Date();
           due.setDate(due.getDate() + 30);
           $('repair-due-date').value = getLocalDateString(due);
@@ -5185,6 +6050,20 @@
           setTimeout(() => {
             if (form.id === 'org-job-form') {
               toggleManualOrgName('org-name', 'org-name-manual-group', 'org-name-manual');
+              $('org-parts-lines').innerHTML = '';
+              syncOrgCartSummary();
+            }
+            if (form.id === 'repair-service-form') {
+              $('repair-parts-lines').innerHTML = '';
+              syncRepairPartsHiddenField();
+              setRequiredField('repair-customer', false);
+              setRequiredField('repair-phone', false);
+              setRequiredField('repair-due-date', false);
+            }
+            if (form.id === 'spare-part-sale-form') {
+              setRequiredField('sale-customer', false);
+              setRequiredField('sale-phone', false);
+              setRequiredField('sale-due-date', false);
             }
             const formCard = form.closest('.card.no-print');
             if (formCard) formCard.style.display = 'none';
@@ -5227,10 +6106,12 @@
         if (titles[pageId]) {
           $('view-title').textContent = titles[pageId][0];
           $('view-subtitle').textContent = titles[pageId][1];
+          $('print-view-title').textContent = titles[pageId][0];
         }
 
         // Refresh specific view layout charts / statistics
         renderActivePageData();
+        if (pageId === 'page-expenses') refreshPayrollForExpenses();
       }
     }
 
@@ -5353,32 +6234,151 @@
       });
     }
 
+    function refreshPayrollForExpenses() {
+      if (APP.expensesPayrollRefreshing) return;
+      APP.expensesPayrollRefreshing = true;
+
+      runScript('getPayroll', [], (res) => {
+        APP.expensesPayrollRefreshing = false;
+        DB.payroll = res.data || res || [];
+        if (APP.currentPage === 'page-expenses') renderExpensesModule();
+      }, () => {
+        APP.expensesPayrollRefreshing = false;
+      });
+    }
+
     // REBUILD INVENTORY PARTS DROPDOWNS
     function rebuildPartsSelectDropdown() {
       const select = $('sale-part');
       if (!select) return;
-      select.innerHTML = '<option value="">-- Choose Stock Item --</option>';
-      DB.inventory.forEach(item => {
-        const currentStock = Number(item.opening) + Number(item.added) - Number(item.sold);
-        const disabled = currentStock <= 0 ? 'disabled' : '';
-        const nameText = currentStock <= 0 ? `${item.name} (OUT OF STOCK)` : `${item.name} (In Stock: ${currentStock})`;
-        const option = document.createElement('option');
-        option.value = item.name;
-        option.textContent = nameText;
-        option.setAttribute('data-price', item.price);
-        if (currentStock <= 0) option.disabled = true;
-        select.appendChild(option);
-      });
+      populateInventorySelect(select);
 
       // Price autocompletion trigger
       select.onchange = () => {
         const opt = select.options[select.selectedIndex];
-        const pr = opt.getAttribute('data-price');
-        if (pr) {
-          $('sale-price').value = pr;
-          computePartsTotal();
-        }
+        const buyingPrice = opt.getAttribute('data-buying-price') || '';
+        const marketPrice = opt.getAttribute('data-market-price') || '';
+        $('sale-buying-price').value = buyingPrice;
+        $('sale-market-price').value = marketPrice;
+        $('sale-price').value = '0';
+        $('sale-price').placeholder = marketPrice ? `Suggested ${formatCurrency(Number(marketPrice))}` : 'Enter actual selling price';
+        computePartsTotal();
       };
+
+      document.querySelectorAll('.repair-part-select').forEach(populateInventorySelect);
+      document.querySelectorAll('.org-part-select').forEach(populateInventorySelect);
+    }
+
+    function addRepairPartRow(values = {}) {
+      const container = $('repair-parts-lines');
+      if (!container) return;
+
+      const row = document.createElement('div');
+      row.className = 'repair-part-row';
+      row.innerHTML = `
+        <select class="form-control repair-part-select" aria-label="Repair spare part"></select>
+        <input type="number" class="form-control repair-part-qty" min="1" step="1" placeholder="Qty" value="${escapeHtml(values.qty || '')}">
+        <input type="number" class="form-control repair-part-price" min="0.01" step="any" placeholder="Sell price" value="${escapeHtml(values.sell_price || '')}">
+        <span class="part-market-hint">Market: KES 0</span>
+        <input type="number" class="form-control repair-part-line-total" placeholder="Total" readonly>
+        <button type="button" class="btn-icon btn-icon-danger repair-part-remove" title="Remove part">x</button>
+      `;
+
+      const select = row.querySelector('.repair-part-select');
+      const qtyInput = row.querySelector('.repair-part-qty');
+      const priceInput = row.querySelector('.repair-part-price');
+      const marketHint = row.querySelector('.part-market-hint');
+      const lineTotal = row.querySelector('.repair-part-line-total');
+
+      populateInventorySelect(select);
+      if (values.part) select.value = values.part;
+
+      const syncMarketHint = () => {
+        const opt = select.options[select.selectedIndex];
+        const marketPrice = Number(opt?.getAttribute('data-market-price')) || 0;
+        marketHint.textContent = `Market: ${formatCurrency(marketPrice)}`;
+        priceInput.placeholder = marketPrice > 0 ? `Suggested ${formatCurrency(marketPrice)}` : 'Sell price';
+      };
+
+      const recalc = () => {
+        const qty = Number(qtyInput.value) || 0;
+        const sellPrice = Number(priceInput.value) || 0;
+        lineTotal.value = (qty * sellPrice).toFixed(2);
+        syncRepairPartsHiddenField();
+      };
+
+      select.addEventListener('change', () => {
+        syncMarketHint();
+        priceInput.value = '0';
+        if (!qtyInput.value) qtyInput.value = 1;
+        recalc();
+      });
+      qtyInput.addEventListener('input', recalc);
+      priceInput.addEventListener('input', recalc);
+      row.querySelector('.repair-part-remove').addEventListener('click', () => {
+        row.remove();
+        syncRepairPartsHiddenField();
+      });
+
+      container.appendChild(row);
+      syncMarketHint();
+      recalc();
+    }
+
+    function addOrgPartRow(values = {}) {
+      const container = $('org-parts-lines');
+      if (!container) return;
+
+      const row = document.createElement('div');
+      row.className = 'repair-part-row org-part-row';
+      row.innerHTML = `
+        <select class="form-control org-part-select" aria-label="Organisation spare part"></select>
+        <input type="number" class="form-control org-part-qty" min="1" step="1" placeholder="Qty" value="${escapeHtml(values.qty || '')}">
+        <input type="number" class="form-control org-part-price" min="0.01" step="any" placeholder="Sell price" value="${escapeHtml(values.sell_price || '')}">
+        <span class="part-market-hint">Market: KES 0</span>
+        <input type="number" class="form-control org-part-line-total" placeholder="Total" readonly>
+        <button type="button" class="btn-icon btn-icon-danger org-part-remove" title="Remove part">x</button>
+      `;
+
+      const select = row.querySelector('.org-part-select');
+      const qtyInput = row.querySelector('.org-part-qty');
+      const priceInput = row.querySelector('.org-part-price');
+      const marketHint = row.querySelector('.part-market-hint');
+      const lineTotal = row.querySelector('.org-part-line-total');
+
+      populateInventorySelect(select);
+      if (values.part) select.value = values.part;
+
+      const syncMarketHint = () => {
+        const opt = select.options[select.selectedIndex];
+        const marketPrice = Number(opt?.getAttribute('data-market-price')) || 0;
+        marketHint.textContent = `Market: ${formatCurrency(marketPrice)}`;
+        priceInput.placeholder = marketPrice > 0 ? `Suggested ${formatCurrency(marketPrice)}` : 'Sell price';
+      };
+
+      const recalc = () => {
+        const qty = Number(qtyInput.value) || 0;
+        const sellPrice = Number(priceInput.value) || 0;
+        lineTotal.value = (qty * sellPrice).toFixed(2);
+        syncOrgCartSummary();
+      };
+
+      select.addEventListener('change', () => {
+        syncMarketHint();
+        priceInput.value = '0';
+        if (!qtyInput.value) qtyInput.value = 1;
+        recalc();
+      });
+      qtyInput.addEventListener('input', recalc);
+      priceInput.addEventListener('input', recalc);
+      row.querySelector('.org-part-remove').addEventListener('click', () => {
+        row.remove();
+        syncOrgCartSummary();
+      });
+
+      container.appendChild(row);
+      syncMarketHint();
+      recalc();
     }
 
     // REBUILD MECHANIC SELECT DROPDOWNS & DATALIST
@@ -5503,7 +6503,7 @@
       const todayRepSum = todayRep.reduce((sum, r) => sum + (Number(r.fee) || 0), 0);
 
       const todayOrg = DB.orgJobs.filter(o => o.date === todayString);
-      const todayOrgSum = todayOrg.reduce((sum, o) => sum + ((Number(o.parts_cost) || 0) + (Number(o.labour) || 0)), 0);
+      const todayOrgSum = calculateOrgServicesFee(todayOrg);
 
       const todayRevenue = todayPartsSum + todayRepSum + todayOrgSum;
       $('kpi-today-revenue').textContent = formatCurrency(todayRevenue);
@@ -5512,10 +6512,17 @@
       // Monthly Revenue
       const mPartsSum = DB.spareParts.filter(p => p.date && p.date.startsWith(thisMonthPrefix)).reduce((sum, p) => sum + (Number(p.total) || 0), 0);
       const mRepSum = DB.repairs.filter(r => r.date && r.date.startsWith(thisMonthPrefix)).reduce((sum, r) => sum + (Number(r.fee) || 0), 0);
-      const mOrgSum = DB.orgJobs.filter(o => o.date && o.date.startsWith(thisMonthPrefix)).reduce((sum, o) => sum + ((Number(o.parts_cost) || 0) + (Number(o.labour) || 0)), 0);
+      const mOrgSum = calculateOrgServicesFee(DB.orgJobs.filter(o => o.date && o.date.startsWith(thisMonthPrefix)));
       const totalMonthIncome = mPartsSum + mRepSum + mOrgSum;
       $('kpi-monthly-revenue').textContent = formatCurrency(totalMonthIncome);
       $('sub-monthly-revenue').textContent = `Parts + Repairs + Org`;
+
+      const allRepairFees = DB.repairs.reduce((sum, r) => sum + (Number(r.fee) || 0), 0);
+      const allPartsSales = DB.spareParts.reduce((sum, p) => sum + (Number(p.total) || 0), 0);
+      const allTimeOrgServices = calculateOrgServicesFee();
+      const allTimeIncome = allRepairFees + allPartsSales + allTimeOrgServices;
+      $('kpi-all-time-income').textContent = formatCurrency(allTimeIncome);
+      $('sub-all-time-income').textContent = 'Repair fees + parts sales + org services';
 
       // Outstanding Debts
       const outstandingDebtsList = DB.debts.filter(d => ((Number(d.amount) || 0) - (Number(d.paid) || 0)) > 0);
@@ -5523,38 +6530,47 @@
       $('kpi-outstanding-debts').textContent = formatCurrency(outstandingDebtsSum);
       $('sub-outstanding-debts').textContent = `${outstandingDebtsList.length} unpaid invoices`;
 
-      // Active Repairs (Status !== Completed and !== Delivered)
-      const activeRepairsList = DB.repairs.filter(r => r.status !== 'Completed' && r.status !== 'Delivered');
-      $('kpi-active-repairs').textContent = activeRepairsList.length;
-      $('sub-active-repairs').textContent = `In shop right now`;
+      // Today's Repairs
+      $('kpi-active-repairs').textContent = todayRep.length;
+      $('sub-active-repairs').textContent = `Repairs logged today`;
 
       // Inventory Value
       const inventoryValue = DB.inventory.reduce((sum, item) => {
         const stock = (Number(item.opening) || 0) + (Number(item.added) || 0) - (Number(item.sold) || 0);
-        return sum + (stock * (Number(item.price) || 0));
+        return sum + (stock * getInventoryMarketPrice(item));
       }, 0);
       $('kpi-inventory-value').textContent = formatCurrency(inventoryValue);
       $('sub-inventory-value').textContent = `${DB.inventory.length} distinct products`;
+
+      // Spare Parts Profit
+      const mPartsProfit = DB.spareParts
+        .filter(p => p.date && p.date.startsWith(thisMonthPrefix))
+        .reduce((sum, p) => sum + calculateSparePartProfit(p), 0);
+      const allPartsProfit = DB.spareParts.reduce((sum, p) => sum + calculateSparePartProfit(p), 0);
+      $('kpi-parts-profit').textContent = formatCurrency(mPartsProfit);
+      $('kpi-parts-profit').style.color = mPartsProfit >= 0 ? 'var(--success)' : 'var(--danger)';
+      $('sub-parts-profit').textContent = `All time: ${formatCurrency(allPartsProfit)}`;
 
       // Monthly Expenses
       const mExpensesSum = DB.expenses.filter(e => e.date && e.date.startsWith(thisMonthPrefix)).reduce((sum, e) => sum + (Number(e.amount) || 0), 0);
       $('kpi-monthly-expenses').textContent = formatCurrency(mExpensesSum);
       $('sub-monthly-expenses').textContent = `Logistics & utilities`;
 
-      // Net Profit
-      const netProfit = totalMonthIncome - mExpensesSum;
+      // Net Income: all-time income after all recorded operating expenses.
+      const allTimeExpenses = DB.expenses.reduce((sum, e) => sum + (Number(e.amount) || 0), 0);
+      const netIncome = allTimeIncome - allTimeExpenses;
+      $('kpi-net-income').textContent = formatCurrency(netIncome);
+      $('kpi-net-income').style.color = netIncome >= 0 ? 'var(--success)' : 'var(--danger)';
+      $('sub-net-income').textContent = 'All time income - expenses';
+
+      // Net Profit: repair services fee + org job fee + spare part sales profit.
+      const netProfit = allRepairFees + allPartsProfit + allTimeOrgServices;
       $('kpi-net-profit').textContent = formatCurrency(netProfit);
       $('kpi-net-profit').style.color = netProfit >= 0 ? 'var(--success)' : 'var(--danger)';
-      $('sub-net-profit').textContent = netProfit >= 0 ? '📈 Profit surplus' : '📉 Operating loss';
+      $('sub-net-profit').textContent = 'Repair fees + org fees + spare parts profit';
 
       // Payroll Cost
-      const totalPayrollCost = DB.payroll.reduce((sum, emp) => {
-        const base = Number(emp.base) || 0;
-        const commPct = Number(emp.comm_pct) || 0;
-        const rev = Number(emp.revenue) || 0;
-        const earned = emp.type === 'Commission' ? (base * commPct / 100) : 0;
-        return sum + base + earned;
-      }, 0);
+      const totalPayrollCost = calculatePayrollTotal();
       $('kpi-payroll-cost').textContent = formatCurrency(totalPayrollCost);
       $('sub-payroll-cost').textContent = `${DB.payroll.length} registered staff`;
 
@@ -5617,7 +6633,7 @@
       const dayValues = last7Days.map(dateStr => {
         const parts = DB.spareParts.filter(p => p.date === dateStr).reduce((sum, p) => sum + (Number(p.total) || 0), 0);
         const reps = DB.repairs.filter(r => r.date === dateStr).reduce((sum, r) => sum + (Number(r.fee) || 0), 0);
-        const orgs = DB.orgJobs.filter(o => o.date === dateStr).reduce((sum, o) => sum + ((Number(o.parts_cost) || 0) + (Number(o.labour) || 0)), 0);
+        const orgs = calculateOrgServicesFee(DB.orgJobs.filter(o => o.date === dateStr));
         return parts + reps + orgs;
       });
 
@@ -5732,7 +6748,7 @@
       const list = [];
       DB.spareParts.forEach(p => list.push({ date: p.date, type: 'Parts', ref: p.invoice, desc: p.part, amt: Number(p.total), pay: p.payment, cat: 'income', created: p.created_at }));
       DB.repairs.forEach(r => list.push({ date: r.date, type: 'Repair', ref: r.job, desc: `${r.customer} - ${r.model || 'No model'}`, amt: Number(r.fee), pay: r.payment, cat: 'income', created: r.created_at }));
-      DB.orgJobs.forEach(o => list.push({ date: o.date, type: 'Org Job', ref: o.invoice, desc: `${o.org_name} (${o.bikes} bikes)`, amt: Number(o.parts_cost) + Number(o.labour), pay: o.status, cat: 'income', created: o.created_at }));
+      DB.orgJobs.forEach(o => list.push({ date: o.date, type: 'Org Job', ref: o.invoice, desc: `${o.org_name} (${o.bikes} bikes)`, amt: getOrgJobServiceFee(o), pay: o.status, cat: 'income', created: o.created_at }));
       DB.expenses.forEach(e => list.push({ date: e.date, type: 'Expense', ref: 'EXPENSE', desc: `${e.category} - ${e.description}`, amt: Number(e.amount), pay: e.payment, cat: 'expense', created: e.created_at }));
 
       list.sort((a, b) => new Date(b.created) - new Date(a.created));
@@ -5874,6 +6890,7 @@
 
       const tbody = $('spare-parts-tbody');
       const sumTotal = list.reduce((sum, p) => sum + (Number(p.total) || 0), 0);
+      const sumProfit = list.reduce((sum, p) => sum + calculateSparePartProfit(p), 0);
 
       paginateTable({
         items: list,
@@ -5882,13 +6899,20 @@
         paginationContainerId: 'spare-parts-pagination',
         renderRow: (p) => {
           const row = document.createElement('tr');
+          const buyingPrice = getSaleBuyingPrice(p);
+          const marketPrice = getSaleMarketPrice(p);
+          const sellPrice = getSaleSellPrice(p);
+          const profit = calculateSparePartProfit(p);
           row.innerHTML = `
             <td style="font-family: var(--font-mono);">${escapeHtml(p.date || '-')}</td>
             <td style="font-family: var(--font-mono); font-weight:600;">${escapeHtml(p.invoice || '-')}</td>
             <td><strong>${escapeHtml(p.part || '-')}</strong></td>
             <td style="font-family: var(--font-mono);">${escapeHtml(p.qty !== undefined ? p.qty : '-')}</td>
-            <td style="font-family: var(--font-mono);">${formatCurrency(p.price)}</td>
+            <td style="font-family: var(--font-mono);">${formatCurrency(buyingPrice)}</td>
+            <td style="font-family: var(--font-mono);">${formatCurrency(marketPrice)}</td>
+            <td style="font-family: var(--font-mono);">${formatCurrency(sellPrice)}</td>
             <td style="font-family: var(--font-mono); font-weight:600;">${formatCurrency(p.total)}</td>
+            <td style="font-family: var(--font-mono); font-weight:600; color:${profit >= 0 ? 'var(--success)' : 'var(--danger)'};">${formatCurrency(profit)}</td>
             <td><span class="status-badge ${p.payment === 'Credit' ? 'status-unpaid' : 'status-paid'}">${escapeHtml(p.payment || 'Cash')}</span></td>
             <td>${escapeHtml(p.customer || '-')}</td>
             <td class="no-print">
@@ -5906,6 +6930,7 @@
       });
 
       $('spare-table-foot-total').textContent = formatCurrency(sumTotal);
+      $('spare-table-foot-profit').textContent = formatCurrency(sumProfit);
 
       function bindSparePartsActions(targetTbody) {
         targetTbody.querySelectorAll('.btn-edit-spare-btn').forEach(btn => {
@@ -5917,7 +6942,9 @@
               $('edit-spare-invoice').value = item.invoice;
               $('edit-spare-part').value = item.part;
               $('edit-spare-qty').value = item.qty;
-              $('edit-spare-price').value = item.price;
+              $('edit-spare-buying-price').value = getSaleBuyingPrice(item);
+              $('edit-spare-market-price').value = getSaleMarketPrice(item);
+              $('edit-spare-price').value = getSaleSellPrice(item);
               $('edit-spare-payment').value = item.payment;
               $('edit-spare-customer').value = item.customer || '';
               Modal.open('modal-edit-spare');
@@ -5957,7 +6984,13 @@
       let list = DB.repairs;
 
       if (search) {
-        list = list.filter(r => r.job.toLowerCase().includes(search) || r.customer.toLowerCase().includes(search) || r.phone.includes(search) || (r.model && r.model.toLowerCase().includes(search)));
+        list = list.filter(r =>
+          String(r.job || '').toLowerCase().includes(search) ||
+          String(r.customer || '').toLowerCase().includes(search) ||
+          String(r.phone || '').includes(search) ||
+          String(r.model || '').toLowerCase().includes(search) ||
+          String(r.parts || '').toLowerCase().includes(search)
+        );
       }
 
       list.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
@@ -5972,14 +7005,16 @@
         renderRow: (r) => {
           const row = document.createElement('tr');
           row.innerHTML = `
-            <td style="font-family: var(--font-mono);">${escapeHtml(r.date)}</td>
-            <td style="font-family: var(--font-mono); font-weight:600;">${escapeHtml(r.job)}</td>
-            <td><strong>${escapeHtml(r.customer)}</strong></td>
-            <td style="font-family: var(--font-mono);">${escapeHtml(r.phone)}</td>
+            <td style="font-family: var(--font-mono);">${escapeHtml(r.date || '-')}</td>
+            <td style="font-family: var(--font-mono); font-weight:600;">${escapeHtml(r.job || '-')}</td>
+            <td><strong>${escapeHtml(r.customer || '-')}</strong></td>
+            <td style="font-family: var(--font-mono);">${escapeHtml(r.phone || '-')}</td>
             <td>${escapeHtml(r.model || '-')}</td>
             <td><strong>${escapeHtml(r.mechanic || '-')}</strong></td>
+            <td>${escapeHtml(r.parts || '-')}</td>
             <td style="font-family: var(--font-mono); font-weight:600;">${formatCurrency(r.fee)}</td>
-            <td><span class="status-badge ${r.payment === 'Credit' ? 'status-unpaid' : 'status-paid'}">${escapeHtml(r.payment)}</span></td>
+            <td><span class="status-badge ${r.payment === 'Credit' ? 'status-unpaid' : (r.payment === 'Partial' ? 'status-partial' : 'status-paid')}">${escapeHtml(r.payment)}</span></td>
+            <td><span class="status-badge status-active">${escapeHtml(r.status || 'Open')}</span></td>
             <td class="no-print">
               <div class="action-btn-group">
                 <button class="btn-icon btn-edit-repair-btn" data-id="${r.id}">✏️</button>
@@ -6010,6 +7045,8 @@
               $('edit-repair-parts').value = item.parts || '';
               $('edit-repair-fee').value = item.fee;
               $('edit-repair-payment').value = item.payment;
+              $('edit-repair-status').value = item.status || 'Pending';
+              $('edit-repair-notes').value = item.progress_notes || '';
               Modal.open('modal-edit-repair');
             }
           });
@@ -6040,15 +7077,19 @@
         d.setDate(d.getDate() + 30);
         $('org-due').value = getLocalDateString(d);
       }
+      syncOrgCartSummary();
 
-      // Calc corporate breaks
-      const orgNames = ['FHI', 'SIR', 'FCA', 'Generation Aid'];
+      // Calc corporate breaks, including manually added organisations.
+      const orgNames = Array.from(new Set([
+        ...knownCorporateOrgs,
+        ...DB.orgJobs.map(o => o.org_name).filter(Boolean)
+      ]));
       const orgCardsContainer = $('org-cards-container');
       orgCardsContainer.innerHTML = '';
 
       orgNames.forEach(org => {
         const jobs = DB.orgJobs.filter(o => o.org_name === org);
-        const billed = jobs.reduce((sum, o) => sum + ((Number(o.parts_cost) || 0) + (Number(o.labour) || 0)), 0);
+        const billed = jobs.reduce((sum, o) => sum + calculateOrgJobTotalBill(o), 0);
 
         const card = document.createElement('div');
         card.className = 'org-card';
@@ -6074,7 +7115,9 @@
 
       if (list.length > 0) {
         list.forEach(o => {
-          const totalBill = (Number(o.parts_cost) || 0) + (Number(o.labour) || 0);
+          const billPartsTotal = getOrgJobBillPartsTotal(o);
+          const serviceFee = getOrgJobServiceFee(o);
+          const totalBill = billPartsTotal + serviceFee;
           const badgeClass = o.status === 'Paid' ? 'status-paid' : (o.status === 'Unpaid' ? 'status-unpaid' : 'status-partial');
 
           const row = document.createElement('tr');
@@ -6083,8 +7126,8 @@
             <td><strong>${escapeHtml(o.org_name || '-')}</strong></td>
             <td style="font-family: var(--font-mono); font-weight:600;">${escapeHtml(o.invoice || '-')}</td>
             <td style="font-family: var(--font-mono);">${escapeHtml(o.bikes !== undefined ? o.bikes : '-')}</td>
-            <td style="font-family: var(--font-mono);">${formatCurrency(o.parts_cost)}</td>
-            <td style="font-family: var(--font-mono);">${formatCurrency(o.labour)}</td>
+            <td style="font-family: var(--font-mono);">${formatCurrency(billPartsTotal)}</td>
+            <td style="font-family: var(--font-mono);">${formatCurrency(serviceFee)}</td>
             <td style="font-family: var(--font-mono); font-weight:700;">${formatCurrency(totalBill)}</td>
             <td><strong>${escapeHtml(o.mechanic || '-')}</strong></td>
             <td><span class="status-badge ${badgeClass}">${escapeHtml(o.status || 'Unpaid')}</span></td>
@@ -6286,8 +7329,9 @@
 
       runScript('recordPayment', [id, amount, method], (result) => {
         Toast.success(`Payment of KES ${amount} recorded against debt!`);
-        // Force sync debt list
         syncCollection('debts', 'debts-table-spinner');
+        syncCollection('repairs', null);
+        syncCollection('orgJobs', null);
       }, () => {
         $('debts-table-spinner').style.display = 'none';
       });
@@ -6307,21 +7351,34 @@
 
       const categories = [
         'Rent', 'Spare Parts Purchase', 'Tools',
-        'Mechanic Payout', 'Salaries', 'Water/Electricity',
-        'Marketing', 'Miscellaneous'
+        'Salary', 'Water/Electricity', 'Marketing'
       ];
 
-      const grandTotal = DB.expenses.reduce((sum, e) => sum + Number(e.amount), 0);
+      const normalizeExpenseCategory = category => {
+        if (category === 'Salaries' || category === 'Mechanic Payout') return 'Salary';
+        return category;
+      };
+
+      const payrollTotal = calculatePayrollTotal();
+      const hasPayrollSheetTotal = DB.payroll.length > 0;
+      const getExpenseCategoryTotal = category => {
+        if (category === 'Salary' && hasPayrollSheetTotal) return payrollTotal;
+        return DB.expenses
+          .filter(e => normalizeExpenseCategory(e.category) === category)
+          .reduce((sum, e) => sum + Number(e.amount), 0);
+      };
+
+      const grandTotal = categories.reduce((sum, category) => sum + getExpenseCategoryTotal(category), 0);
 
       categories.forEach(cat => {
-        const catTotal = DB.expenses.filter(e => e.category === cat).reduce((sum, e) => sum + Number(e.amount), 0);
+        const catTotal = getExpenseCategoryTotal(cat);
         const widthPct = grandTotal > 0 ? (catTotal / grandTotal) * 100 : 0;
 
         const row = document.createElement('div');
         row.innerHTML = `
           <div style="display: flex; justify-content: space-between; font-size: 13px; font-weight: 500;">
             <span>${escapeHtml(cat)}</span>
-            <span style="font-family: var(--font-mono); font-weight: 600;">${formatCurrency(catTotal)} (${widthPct.toFixed(1)}%)</span>
+            <span style="font-family: var(--font-mono); font-weight: 600;">${formatCurrency(catTotal)} (${widthPct.toFixed(1)}%)${cat === 'Salary' && hasPayrollSheetTotal ? ' from payroll' : ''}</span>
           </div>
           <div style="background: var(--border); height: 8px; border-radius: 4px; overflow: hidden; margin-top: 4px;">
             <div style="background: var(--red); height: 100%; width: ${widthPct}%; border-radius: 4px; transition: width 0.3s;"></div>
@@ -6335,7 +7392,11 @@
       let list = DB.expenses;
 
       if (search) {
-        list = list.filter(e => e.description.toLowerCase().includes(search) || e.category.toLowerCase().includes(search) || (e.paid_to && e.paid_to.toLowerCase().includes(search)));
+        list = list.filter(e =>
+          e.description.toLowerCase().includes(search) ||
+          normalizeExpenseCategory(e.category).toLowerCase().includes(search) ||
+          (e.paid_to && e.paid_to.toLowerCase().includes(search))
+        );
       }
 
       list.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
@@ -6350,7 +7411,7 @@
           const row = document.createElement('tr');
           row.innerHTML = `
             <td style="font-family: var(--font-mono);">${escapeHtml(e.date)}</td>
-            <td><strong>${escapeHtml(e.category)}</strong></td>
+            <td><strong>${escapeHtml(normalizeExpenseCategory(e.category))}</strong></td>
             <td>${escapeHtml(e.description)}</td>
             <td>${escapeHtml(e.paid_to || '-')}</td>
             <td style="font-family: var(--font-mono); color: var(--danger); font-weight: 600;">${formatCurrency(e.amount)}</td>
@@ -6376,7 +7437,7 @@
           if (item) {
             $('edit-expense-id').value = item.id;
             $('edit-expense-date').value = item.date;
-            $('edit-expense-category').value = item.category;
+            $('edit-expense-category').value = normalizeExpenseCategory(item.category);
             $('edit-expense-paid-to').value = item.paid_to || '';
             $('edit-expense-amount').value = item.amount;
             $('edit-expense-payment').value = item.payment;
@@ -6398,13 +7459,7 @@
     // ==========================================
     function renderPayrollModule() {
       // Dynamic calculations YTD
-      const totalMonthlyPay = DB.payroll.reduce((sum, emp) => {
-        const base = Number(emp.base) || 0;
-        const commPct = Number(emp.comm_pct) || 0;
-        const rev = Number(emp.revenue) || 0;
-        const earned = emp.type === 'Commission' ? (base * commPct / 100) : 0;
-        return sum + base + earned;
-      }, 0);
+      const totalMonthlyPay = calculatePayrollTotal();
 
       $('payroll-stat-total').textContent = formatCurrency(totalMonthlyPay);
       $('payroll-stat-salary-count').textContent = `${DB.payroll.filter(e => e.type === 'Salary').length} employees`;
@@ -6416,8 +7471,8 @@
       if (DB.payroll.length > 0) {
         DB.payroll.forEach(emp => {
           const isDirty = APP.changedPayrollIds.has(emp.id);
-          const commEarned = emp.type === 'Commission' ? (Number(emp.base) * Number(emp.comm_pct) / 100) : 0;
-          const totalPay = Number(emp.base) + commEarned;
+          const commEarned = emp.type === 'Commission' ? (Number(emp.revenue) * Number(emp.comm_pct) / 100) : 0;
+          const totalPay = calculateEmployeePay(emp);
 
           const row = document.createElement('tr');
           row.id = `payroll-row-${emp.id}`;
@@ -6503,8 +7558,7 @@
           const emp = DB.payroll.find(e => e.id === id);
           if (!emp) return;
 
-          const commEarned = emp.type === 'Commission' ? (Number(emp.base) * Number(emp.comm_pct) / 100) : 0;
-          const totalPay = Number(emp.base) + commEarned;
+          const totalPay = calculateEmployeePay(emp);
 
           APP.payEmployeeId = id;
           APP.payEmployeeAmount = totalPay;
@@ -6599,6 +7653,8 @@
       if (list.length > 0) {
         list.forEach(i => {
           const cur = Number(i.opening) + Number(i.added) - Number(i.sold);
+          const buyingPrice = getInventoryBuyingPrice(i);
+          const marketPrice = getInventoryMarketPrice(i);
 
           let badgeHTML = '';
           if (cur <= 0) badgeHTML = '<span class="status-badge status-out">🔴 Out of Stock</span>';
@@ -6621,7 +7677,8 @@
               </div>
             </td>
             <td>${escapeHtml(i.category || '-')}</td>
-            <td style="font-family: var(--font-mono); font-weight:600;">${formatCurrency(i.price)}</td>
+            <td style="font-family: var(--font-mono); font-weight:600;">${formatCurrency(buyingPrice)}</td>
+            <td style="font-family: var(--font-mono); font-weight:600;">${formatCurrency(marketPrice)}</td>
             <td style="font-family: var(--font-mono);">${escapeHtml(i.opening)}</td>
             <td style="font-family: var(--font-mono); color: var(--success);">+${escapeHtml(i.added)}</td>
             <td style="font-family: var(--font-mono); color: var(--danger);">${escapeHtml(i.sold)}</td>
@@ -6637,7 +7694,7 @@
           tbody.appendChild(row);
         });
       } else {
-        tbody.innerHTML = `<tr><td colspan="9" style="text-align: center; color: var(--muted); font-style: italic;">No warehouse stock found</td></tr>`;
+        tbody.innerHTML = `<tr><td colspan="10" style="text-align: center; color: var(--muted); font-style: italic;">No warehouse stock found</td></tr>`;
       }
 
       tbody.querySelectorAll('.btn-edit-inventory-btn').forEach(btn => {
@@ -6647,7 +7704,8 @@
             $('edit-inventory-id').value = item.id;
             $('edit-inv-name').value = item.name;
             $('edit-inv-category').value = item.category || '';
-            $('edit-inv-price').value = item.price;
+            $('edit-inv-buying-price').value = getInventoryBuyingPrice(item);
+            $('edit-inv-price').value = getInventoryMarketPrice(item);
             $('edit-inv-opening').value = item.opening;
             $('edit-inv-added').value = item.added;
             $('edit-inv-sold').value = item.sold;
@@ -6690,7 +7748,7 @@
 
         const partsTotal = DB.spareParts.filter(p => p.date && p.date.startsWith(monthPrefix)).reduce((sum, p) => sum + (Number(p.total) || 0), 0);
         const repairsTotal = DB.repairs.filter(r => r.date && r.date.startsWith(monthPrefix)).reduce((sum, r) => sum + (Number(r.fee) || 0), 0);
-        const orgTotal = DB.orgJobs.filter(o => o.date && o.date.startsWith(monthPrefix)).reduce((sum, o) => sum + ((Number(o.parts_cost) || 0) + (Number(o.labour) || 0)), 0);
+        const orgTotal = calculateOrgServicesFee(DB.orgJobs.filter(o => o.date && o.date.startsWith(monthPrefix)));
 
         const income = partsTotal + repairsTotal + orgTotal;
         const expenses = DB.expenses.filter(e => e.date && e.date.startsWith(monthPrefix)).reduce((sum, e) => sum + (Number(e.amount) || 0), 0);
@@ -6934,7 +7992,7 @@
           date: p.date || p.created_at,
           type: 'part',
           title: `⚙️ Spare Part Sale: ${p.invoice || 'N/A'}`,
-          desc: `Bought ${p.qty}x ${p.part} @ ${formatCurrency(p.price)}`,
+          desc: `Bought ${p.qty}x ${p.part} @ ${formatCurrency(getSaleSellPrice(p))}`,
           payment: p.payment || 'Cash',
           cost: Number(p.total) || 0,
           rawDate: new Date(p.date || p.created_at)
@@ -7256,8 +8314,12 @@
       const payment = $('sale-payment').value;
       const part = $('sale-part').value;
       const qty = Number($('sale-qty').value);
-      const price = Number($('sale-price').value);
-      const total = qty * price;
+      const inventoryItem = findInventoryItemByName(part);
+      const buyingPrice = Number($('sale-buying-price').value) || (inventoryItem ? getInventoryBuyingPrice(inventoryItem) : 0);
+      const marketPrice = Number($('sale-market-price').value) || (inventoryItem ? getInventoryMarketPrice(inventoryItem) : Number($('sale-price').value)) || 0;
+      const sellPrice = Number($('sale-price').value);
+      const total = qty * sellPrice;
+      const profit = (sellPrice - buyingPrice) * qty;
       const customer = $('sale-customer').value.trim();
 
       // Save elements
@@ -7266,11 +8328,15 @@
         invoice: $('sale-invoice').value,
         part: part,
         qty: qty,
-        price: price,
+        buying_price: buyingPrice,
+        market_price: marketPrice,
+        sell_price: sellPrice,
+        price: sellPrice,
         total: total,
+        profit: profit,
         payment: payment,
         customer: customer,
-        phone: payment === 'Credit' ? $('sale-phone').value : ''
+        phone: $('sale-phone').value.trim()
       };
 
       // Sequencer
@@ -7309,7 +8375,7 @@
             date: data.date,
             ref: data.invoice,
             name: customer || 'Spare Parts Customer',
-            phone: $('sale-phone').value,
+            phone: data.phone,
             item: `${part} (Qty: ${qty})`,
             amount: total,
             paid: 0,
@@ -7332,21 +8398,27 @@
       e.preventDefault();
       const form = $('repair-service-form');
       if (!Validator.validate(form)) return;
+      if (hasIncompleteRepairPartRows()) {
+        Toast.error('Complete each selected repair part with part, quantity, and selling price');
+        return;
+      }
 
       const payment = $('repair-payment').value;
       const customer = $('repair-customer').value.trim();
       const job = $('repair-job').value;
       const fee = Number($('repair-fee').value);
+      const repairParts = collectRepairPartItems();
+      const partsTotal = repairParts.reduce((sum, item) => sum + item.total, 0);
 
       const data = {
         date: $('repair-date').value,
         job: job,
         customer: customer,
-        phone: $('repair-phone').value,
+        phone: $('repair-phone').value.trim(),
         model: $('repair-model').value.trim(),
         description: $('repair-desc').value.trim(),
         mechanic: $('repair-mechanic').value,
-        parts: $('repair-parts').value.trim(),
+        parts: formatRepairPartsSummary(repairParts),
         fee: fee,
         payment: payment
       };
@@ -7361,11 +8433,15 @@
         $('repairs-table-spinner').style.display = 'none';
       };
 
-      runScript('addRepair', data, () => {
+      runScript('addRepair', data, async () => {
         Toast.success('Repair job ticket opened successfully!');
 
         const finalSteps = () => {
           syncCollection('repairs', 'repairs-table-spinner');
+          if (repairParts.length > 0) {
+            syncCollection('spareParts', null);
+            syncCollection('inventory', null);
+          }
           form.reset();
           const formCard = form.closest('.card.no-print');
           if (formCard) formCard.style.display = 'none';
@@ -7374,14 +8450,39 @@
           cleanupSubmit();
         };
 
+        try {
+          for (const [index, item] of repairParts.entries()) {
+            const saleData = {
+              date: data.date,
+              invoice: `${job}-PART-${String(index + 1).padStart(2, '0')}`,
+              part: item.part,
+              qty: item.qty,
+              buying_price: item.buying_price,
+              market_price: item.market_price,
+              sell_price: item.sell_price,
+              price: item.sell_price,
+              total: item.total,
+              profit: item.profit,
+              payment: payment,
+              customer: customer || 'Repair Customer',
+              phone: data.phone
+            };
+            await runScriptPromise('addSparePart', saleData);
+            await runScriptPromise('decrementStock', [item.part, item.qty]);
+          }
+        } catch (err) {
+          cleanupSubmit();
+          return;
+        }
+
         if (payment === 'Credit') {
           const debtData = {
             date: data.date,
             ref: job,
             name: customer,
             phone: data.phone,
-            item: `Labour Fee - ${data.description}`,
-            amount: fee,
+            item: repairParts.length > 0 ? `Repair labour + parts - ${data.description}` : `Labour Fee - ${data.description}`,
+            amount: fee + partsTotal,
             paid: 0,
             due: $('repair-due-date').value
           };
@@ -7401,9 +8502,14 @@
       e.preventDefault();
       const form = $('org-job-form');
       if (!Validator.validate(form)) return;
+      if (hasIncompleteOrgPartRows()) {
+        Toast.error('Complete each selected organisation part with part, quantity, and selling price');
+        return;
+      }
 
       const status = $('org-status').value;
-      const partsCost = Number($('org-parts-cost').value) || 0;
+      const orgParts = collectOrgPartItems();
+      const partsCost = orgParts.reduce((sum, item) => sum + item.total, 0);
       const labour = Number($('org-labour').value);
       const total = partsCost + labour;
       const org = $('org-name').value === 'Other'
@@ -7418,8 +8524,8 @@
         reg: $('org-reg').value.trim(),
         model: $('org-model').value.trim(),
         invoice: invoice,
-        parts: $('org-parts').value.trim(),
-        parts_cost: partsCost,
+        parts: '',
+        parts_cost: 0,
         description: $('org-desc').value.trim(),
         mechanic: $('org-mechanic').value,
         labour: labour,
@@ -7438,17 +8544,49 @@
         $('org-table-spinner').style.display = 'none';
       };
 
-      runScript('addOrgJob', data, () => {
+      runScript('addOrgJob', data, async () => {
         Toast.success('Fleet contract job saved successfully!');
 
         const finalSteps = () => {
           syncCollection('orgJobs', 'org-table-spinner');
+          if (orgParts.length > 0) {
+            syncCollection('spareParts', null);
+            syncCollection('inventory', null);
+          }
           form.reset();
+          $('org-parts-lines').innerHTML = '';
+          syncOrgCartSummary();
           const formCard = form.closest('.card.no-print');
           if (formCard) formCard.style.display = 'none';
           $('org-invoice').value = `INV-ORG-${Date.now().toString().slice(-6)}`;
           cleanupSubmit();
         };
+
+        try {
+          for (const [index, item] of orgParts.entries()) {
+            const saleData = {
+              date: data.date,
+              invoice: `${invoice}-ORG-PART-${String(index + 1).padStart(2, '0')}`,
+              part: item.part,
+              qty: item.qty,
+              buying_price: item.buying_price,
+              market_price: item.market_price,
+              sell_price: item.sell_price,
+              price: item.sell_price,
+              total: item.total,
+              profit: item.profit,
+              payment: status === 'Paid' ? 'Bank Transfer' : 'Credit',
+              customer: org || 'Organisation Account',
+              phone: ''
+            };
+            await runScriptPromise('addSparePart', saleData);
+            await runScriptPromise('decrementStock', [item.part, item.qty]);
+          }
+        } catch (err) {
+          Toast.error('Org job saved, but spare part stock/sales sync failed. Please review inventory and sales ledger.');
+          cleanupSubmit();
+          return;
+        }
 
         if (status !== 'Paid') {
           const debtData = {
@@ -7551,6 +8689,10 @@
 
       $('payroll-comm-pct').disabled = isSalary;
       $('payroll-revenue').disabled = isSalary;
+      $('payroll-comm-pct').required = !isSalary;
+      $('payroll-revenue').required = !isSalary;
+      $('payroll-comm-pct').closest('.form-group').style.display = isSalary ? 'none' : '';
+      $('payroll-revenue').closest('.form-group').style.display = isSalary ? 'none' : '';
 
       if (isSalary) {
         $('payroll-comm-pct').value = '0';
@@ -7630,6 +8772,8 @@
       const data = {
         name: $('inv-name').value.trim(),
         category: $('inv-category').value.trim(),
+        buying_price: Number($('inv-buying-price').value),
+        market_price: Number($('inv-price').value),
         price: Number($('inv-price').value),
         opening: Number($('inv-opening').value),
         added: Number($('inv-added').value),
@@ -7675,7 +8819,7 @@
 
     // CSV Trigger exports
     $('btn-spare-export-csv').onclick = () => {
-      const headers = ['date', 'invoice', 'part', 'qty', 'price', 'total', 'payment', 'customer'];
+      const headers = ['date', 'invoice', 'part', 'qty', 'buying_price', 'market_price', 'sell_price', 'price', 'total', 'profit', 'payment', 'customer'];
       exportToCSV('spare_parts_sales_ledger', headers, DB.spareParts);
     };
     $('btn-repairs-export-csv').onclick = () => {
@@ -7699,7 +8843,7 @@
       exportToCSV('payroll_salary_sheet', headers, DB.payroll);
     };
     $('btn-inventory-export-csv').onclick = () => {
-      const headers = ['name', 'category', 'price', 'opening', 'added', 'sold'];
+      const headers = ['name', 'category', 'buying_price', 'market_price', 'price', 'opening', 'added', 'sold'];
       exportToCSV('warehouse_inventory_stock', headers, DB.inventory);
     };
 
@@ -7727,6 +8871,8 @@
 
           // Handle specific cases where field prefix was different
           let property = field;
+          if (input.id.includes('buying-price')) property = 'buying_price';
+          if (input.id.includes('market-price')) property = 'market_price';
           if (input.id.includes('inv-name')) property = 'name';
           if (input.id.includes('inv-category')) property = 'category';
           if (input.id.includes('inv-price')) property = 'price';
@@ -7745,9 +8891,27 @@
           updates.org_name = $('edit-org-name-manual').value.trim();
         }
 
+        if (formId === 'edit-org-form') {
+          updates.parts = '';
+          updates.parts_cost = 0;
+        }
+
         // Add calculated dynamic totals in edits
         if (formId === 'edit-spare-form') {
+          updates.sell_price = Number(updates.price) || 0;
           updates.total = Number(updates.qty) * Number(updates.price);
+          updates.profit = (Number(updates.price) - (Number(updates.buying_price) || 0)) * Number(updates.qty);
+        }
+
+        if (formId === 'edit-inventory-form') {
+          updates.name = $('edit-inv-name').value.trim();
+          updates.category = $('edit-inv-category').value.trim();
+          updates.buying_price = Number($('edit-inv-buying-price').value) || 0;
+          updates.market_price = Number($('edit-inv-price').value) || 0;
+          updates.price = Number($('edit-inv-price').value) || 0;
+          updates.opening = Number($('edit-inv-opening').value) || 0;
+          updates.added = Number($('edit-inv-added').value) || 0;
+          updates.sold = Number($('edit-inv-sold').value) || 0;
         }
 
         // Handle completed_at timestamp validation on repair status transition
@@ -7769,6 +8933,10 @@
         runScript(fnName, [id, updates], () => {
           Toast.success('Record modified in Google Sheets successfully');
           syncCollection(syncKey, null);
+          if (formId === 'edit-debt-form') {
+            syncCollection('repairs', null);
+            syncCollection('orgJobs', null);
+          }
         });
       };
     };
